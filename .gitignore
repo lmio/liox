@@ -1,0 +1,17 @@
+/.build
+/.lock
+/.stage
+/auto
+/binary
+/binary.contents
+/binary.deb
+/binary.hybrid.iso
+/binary.hybrid.iso.zsync
+/binary.packages
+/binary.udeb
+/cache
+/chroot
+/chroot.packages.install
+/chroot.packages.live
+/config
+/local

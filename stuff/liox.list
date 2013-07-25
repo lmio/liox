@@ -1,0 +1,15 @@
+# Desktop stuff
+lxde iceweasel xscreensaver xarchiver pcmanfm gpicview scrot
+chmsee evince dia libreoffice
+
+# Desktop editors, IDEs
+vim-gtk joe lazarus gedit scite geany
+
+# Console utilities/console editors
+mc emacs nano kpartx git mercurial x11vnc
+
+# Compilers, debuggers, profilers, console tools
+make gcc g++ fpc gdb ddd
+
+# Misc programming languages
+lua5.2 ruby python python3 ipython
