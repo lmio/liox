@@ -3,13 +3,23 @@ lxde iceweasel xscreensaver xarchiver pcmanfm gpicview scrot
 chmsee evince dia libreoffice
 
 # Desktop editors, IDEs
-vim-gtk joe lazarus gedit scite geany
+vim-gtk joe lazarus gedit scite geany leafpad
 
 # Console utilities/console editors
-mc emacs nano kpartx git mercurial x11vnc
+mc emacs nano git mercurial ipython
 
-# Compilers, debuggers, profilers, console tools
-make gcc g++ fpc gdb ddd
+# Compilers, debuggers, profilers
+make gcc g++ fpc gdb ddd valgrind
 
 # Misc programming languages
-lua5.2 ruby python python3 ipython
+lua5.2 ruby python python3 clang
+
+# Network and system utilities
+strace lsof tree nmap netcat tightvncserver curl dnsutils telnet
+iotop tmux htop x11vnc kpartx autossh tsocks units
+
+# Documentation
+stl-manual gdb-doc gcc-doc glibc-doc manpages manpages-posix-dev
+
+# Hangman
+bsdgames
