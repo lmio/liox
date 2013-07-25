@@ -1,3 +1,4 @@
+#!/usr/bin/make -f
 
 binary.hybrid.iso: config
 	lb build
