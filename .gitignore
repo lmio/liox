@@ -13,5 +13,4 @@
 /chroot
 /chroot.packages.install
 /chroot.packages.live
-/config
 /local
