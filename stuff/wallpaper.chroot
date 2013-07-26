@@ -1,0 +1,4 @@
+#!/bin/sh -ex
+
+update-alternatives --install /usr/share/images/desktop-base/desktop-background \
+    desktop-background /usr/share/images/desktop-base/lmio_logo.jpg 90
