@@ -1,0 +1,4 @@
+set ai nu hlsearch bg=dark ts=4 sws=4 sw=4
+filetype plugin indent on
+syntax on
+runtime! debian.vim
