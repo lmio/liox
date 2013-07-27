@@ -17,8 +17,8 @@ Run it::
 
     $ kvm -boot d -cdrom binary.hybrid.iso
 
-You can also run it via VirtualBox, VMWare, Xen, etc. Just run it as a bootable
-CD.
+You can also run it via qemu, VirtualBox, VMWare, Xen, etc. Just run it as a
+bootable CD.
 
 Optionally, you can install this image to a hard drive by selecting "install" in
 the installation menu.
