@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-binary.hybrid.iso:
+binary.iso:
 	lb build
 
 .PHONY: clean

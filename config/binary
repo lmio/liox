@@ -6,7 +6,7 @@ LB_BINARY_FILESYSTEM="fat32"
 
 # $LB_BINARY_IMAGES: set image type
 # (Default: iso-hybrid)
-LB_BINARY_IMAGES="iso-hybrid"
+LB_BINARY_IMAGES="iso"
 
 # $LB_APT_INDICES: set apt/aptitude generic indices
 # (Default: true)

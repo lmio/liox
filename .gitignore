@@ -5,8 +5,8 @@
 /binary
 /binary.contents
 /binary.deb
-/binary.hybrid.iso
-/binary.hybrid.iso.zsync
+/binary.iso
+/binary.iso.zsync
 /binary.packages
 /binary.udeb
 /cache
