@@ -13,4 +13,5 @@
 /chroot
 /chroot.packages.install
 /chroot.packages.live
+/hdd.vdi
 /local
