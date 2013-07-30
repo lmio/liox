@@ -6,7 +6,7 @@ Linux distribution for Lithuania Informatics Olympiad 2014.
 Getting started
 ---------------
 
-To generate the ``binary.hybrid.iso``, type::
+To generate the ``binary.iso``, type::
 
     $ make
 
@@ -15,13 +15,18 @@ You will need root for ``live build``. Note: this will take a while and download
 
 Run it::
 
-    $ kvm -boot d -cdrom binary.hybrid.iso
+    $ kvm -boot d -cdrom binary.iso
 
 You can also run it via qemu, VirtualBox, VMWare, Xen, etc. Just run it as a
 bootable CD.
 
-Optionally, you can install this image to a hard drive by selecting "install" in
-the installation menu.
+To generate a virtual machine image out of the ISO, run::
+
+    $ make vm
+
+Alternatively, you can select "fully automated installation" in the menu if you
+are happy with the defaults (uses dangerous preseed script, be careful), or
+"install" for standard debian installation.
 
 Contributing
 ------------
