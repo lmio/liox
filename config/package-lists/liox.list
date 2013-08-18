@@ -1,9 +1,8 @@
 # Desktop stuff
-task-lxde-desktop task-laptop
-xarchiver feh gpicview scrot chmsee evince dia
+task-lxde-desktop task-laptop xarchiver feh gpicview scrot chmsee evince dia
 
 # Desktop editors, IDEs
-vim-gtk joe lazarus gedit scite geany leafpad
+vim-gtk joe lazarus gedit scite geany leafpad codeblocks eclipse-cdt
 
 # Console utilities/console editors
 mc emacs nano git mercurial ipython
@@ -19,7 +18,7 @@ strace lsof tree nmap netcat tightvncserver curl dnsutils telnet
 iotop tmux htop x11vnc kpartx autossh tsocks units openssh-server
 
 # Documentation
-stl-manual gdb-doc gcc-doc glibc-doc manpages manpages-posix-dev
+stl-manual gdb-doc gcc-doc glibc-doc manpages manpages-posix-dev fp-docs
 
 # Hangman
 bsdgames
