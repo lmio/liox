@@ -1,9 +1,12 @@
 #!/usr/bin/make -f
 
-binary.iso:
-	lb build
+VSN = $(shell git describe --always)
 
-hdd.vdi:
+binary-$(VSN).iso:
+	lb build
+	mv binary.iso $@
+
+hdd-$(VSN).vdi:
 	qemu-img create -f vdi $@ 10G
 
 .PHONY: clean vm
@@ -12,10 +15,10 @@ clean:
 
 AUTO := preseed/file=/cdrom/preseed/auto.cfg
 DBG := DEBCONF_DEBUG=5
-vm: hdd.vdi binary.iso
+vm: hdd-$(VSN).vdi binary-$(VSN).iso
 	kvm -no-reboot \
-		-cdrom binary.iso \
+		-cdrom binary-$(VSN).iso \
 		-kernel binary/install/vmlinuz \
 		-initrd binary/install/initrd.gz \
 		-append "vga=788 auto=true priority=critical keymap=us $(AUTO) $(DBG)" \
-		hdd.vdi
+		hdd-$(VSN).vdi

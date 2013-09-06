@@ -15,7 +15,7 @@ You will need root for ``live build``. Note: this will take a while and download
 
 Run it::
 
-    $ kvm -boot d -cdrom binary.iso
+    $ kvm -boot d -cdrom binary-*.iso
 
 You can also run it via qemu, VirtualBox, VMWare, Xen, etc. Just run it as a
 bootable CD.

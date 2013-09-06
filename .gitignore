@@ -5,7 +5,7 @@
 /binary
 /binary.contents
 /binary.deb
-/binary.iso
+/binary-*.iso
 /binary.iso.zsync
 /binary.packages
 /binary.udeb
@@ -13,5 +13,5 @@
 /chroot
 /chroot.packages.install
 /chroot.packages.live
-/hdd.vdi
+/hdd-*.vdi
 /local
