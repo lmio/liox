@@ -20,6 +20,7 @@ iotop tmux htop x11vnc kpartx autossh tsocks units openssh-server
 
 # Documentation
 stl-manual gdb-doc gcc-doc glibc-doc manpages manpages-posix-dev fp-docs
+c-cpp-reference
 
 # Hangman
 bsdgames
