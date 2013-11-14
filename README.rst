@@ -6,7 +6,7 @@ Linux distribution for Lithuania Informatics Olympiad 2014.
 Getting started
 ---------------
 
-To generate the ``binary.iso``, type::
+To generate the ``liox-VERSION.iso``, type::
 
     $ make
 
@@ -15,7 +15,7 @@ You will need root for ``live build``. Note: this will take a while and download
 
 Run it::
 
-    $ kvm -boot d -cdrom binary-*.iso
+    $ kvm -boot d -cdrom liox-*.iso
 
 You can also run it via qemu, VirtualBox, VMWare, Xen, etc. Just run it as a
 bootable CD.
