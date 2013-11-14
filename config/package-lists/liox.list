@@ -1,5 +1,5 @@
 # Desktop stuff
-lxde task-laptop xarchiver feh gpicview scrot chmsee evince
+lxde task-laptop xarchiver feh gpicview scrot evince
 iceweasel system-config-printer
 
 # Desktop editors, IDEs
