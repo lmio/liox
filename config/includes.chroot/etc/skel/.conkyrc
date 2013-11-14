@@ -10,7 +10,7 @@ draw_graph_borders yes
 draw_outline no
 draw_shades no
 use_xft yes
-xftfont DejaVu Sans Mono:size=12
+xftfont DejaVu Sans Mono:size=10
 gap_x 5
 gap_y 60
 minimum_size 5 5
@@ -21,7 +21,9 @@ out_to_stderr no
 extra_newline no
 own_window yes
 own_window_class Conky
-own_window_type desktop
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 stippled_borders 0
 update_interval 1.0
 uppercase no
@@ -36,7 +38,7 @@ ${color grey}Frequency:$color $freq_g
 ${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
 ${color grey}CPU Usage:$color $cpu% ${cpubar 4}
 $hr
-${color grey}Name              PID   CPU%   MEM%
+${color grey}Name               PID   CPU%   MEM%
 ${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
 ${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
 ${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}

@@ -1,6 +1,6 @@
 # Desktop stuff
 lxde task-laptop xarchiver feh gpicview scrot evince
-iceweasel system-config-printer
+iceweasel system-config-printer conky
 
 # Desktop editors, IDEs
 vim-gtk joe lazarus gedit scite geany leafpad codeblocks eclipse-cdt
