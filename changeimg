@@ -1,0 +1,67 @@
+#!/bin/sh
+
+# A tool to manipulate a VDI image. Useful for adding/removing users,
+# changing passwords, setting up ssh keys, etc. without starting the VM.
+
+set -e
+
+OP="$1"
+
+fatal() {
+    echo "$*"
+    exit 1
+}
+
+setup() {
+    DISK="$2"
+    [ ! -f "$DISK" ] && fatal "usage: $0 setup <harddisk.vdi>"
+    [ ! -b /dev/nbd0 ] && fatal "/dev/nbd0 not found, maybe run modprobe nbd?"
+    if [ -z "`pgrep qemu-nbd`" ]; then
+        qemu-nbd -c /dev/nbd0 "$DISK" || fatal "qemu-nbd -c /dev/nbd0 failed"
+    fi
+    [ ! -b /dev/mapper/nbd0p1 ] && kpartx -sa /dev/nbd0
+    [ ! -b /dev/mapper/nbd0p1 ] && fatal "kpartx -sa /dev/nbd0 failed"
+    mkdir -p mnt
+    if [ ! -f mnt/vmlinuz ]; then
+        mount /dev/mapper/nbd0p1 mnt || fatal "mount /dev/mapper/nbd0p1 failed"
+    fi
+    echo Setup successful
+}
+
+cleanup() {
+    if [ -f mnt/vmlinuz ]; then
+        umount mnt || fatal "umount mnt failed"
+    fi
+    [ -b /dev/mapper/nbd0p1 ] && kpartx -d /dev/nbd0
+    [ -b /dev/mapper/nbd0p1 ] && fatal "kpartx -d /dev/nbd0 failed"
+    [ -n "`pgrep qemu-nbd`" ] && qemu-nbd -d /dev/nbd0
+    [ -n "`pgrep qemu-nbd`" ] && fatal "seems like qemu-nbd still running"
+    echo Cleanup successful
+}
+
+shell() {
+    [ ! -f mnt/vmlinuz ] && fatal "run setup first"
+    chroot mnt /bin/bash
+}
+
+run() {
+    SCRIPT="$2"
+    [ ! -x "$SCRIPT" ] && fatal "usage: $0 run <executable>"
+    [ ! -f mnt/vmlinuz ] && fatal "run setup first"
+
+    cp "$SCRIPT" mnt/tmp/liox_tmp
+    chroot mnt tmp/liox_tmp
+}
+
+case $OP in
+    setup )
+        setup $*;;
+    shell )
+        shell $* ;;
+    run )
+        run $* ;;
+    cleanup )
+        cleanup $* ;;
+    * )
+        echo "Usage: $0 (setup|shell|run|cleanup)" ;;
+esac

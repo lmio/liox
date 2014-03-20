@@ -40,3 +40,26 @@ rules/guidelines:
 4. Write `good commit messages`_.
 
 .. _`good commit messages`: https://github.com/erlang/otp/wiki/Writing-good-commit-messages
+
+
+Altering the VM
+---------------
+
+It is possible to alter the virtual machine image without starting it. For example,
+to delete the default user::
+
+    $ sudo ./changeimg setup NewVirtualDisk1.vdi
+    Setup successful
+    $ sudo ./changeimg shell  # gives chroot'ed shell
+    # deluser user
+    ...
+    # adduser lioadmin
+    ...
+    # exit
+    $ sudo ./changeimg cleanup
+    Cleanup successful
+
+You can also easily run executables in the chroot using the same script. For
+more features, see help::
+
+    $ ./changeimg --help
