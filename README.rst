@@ -63,3 +63,6 @@ You can also easily run executables in the chroot using the same script. For
 more features, see help::
 
     $ ./changeimg --help
+
+For organizers: actual production scripts are in internal SVN under folder
+``TC``.
