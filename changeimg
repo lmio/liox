@@ -1,14 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 # A tool to manipulate a VDI image. Useful for adding/removing users,
 # changing passwords, setting up ssh keys, etc. without starting the VM.
+
+# Bash not POSIX because we need 'shift'
 
 set -e
 
 OP="$1"
 
 fatal() {
-    echo "$*"
+    printf %s\\n "$@"
     exit 1
 }
 
@@ -44,24 +46,39 @@ shell() {
     chroot mnt /bin/bash
 }
 
-run() {
+local_run() {
     SCRIPT="$2"
-    [ ! -x "$SCRIPT" ] && fatal "usage: $0 run <executable>"
+    [ ! -x "$SCRIPT" ] && fatal "usage: $0 local_run <executable> <args>"
     [ ! -f mnt/vmlinuz ] && fatal "run setup first"
 
     cp "$SCRIPT" mnt/tmp/liox_tmp
-    chroot mnt tmp/liox_tmp
+    shift;
+    chroot mnt tmp/liox_tmp "$@"
+}
+
+execute() {
+    [ -z "$2" ] && fatal "use $0 shell for shell"
+    [ ! -f mnt/vmlinuz ] && fatal "run setup first"
+    shift;
+    chroot mnt "$@"
 }
 
 case $OP in
     setup )
-        setup $*;;
+        setup "$@"
+        ;;
     shell )
-        shell $* ;;
-    run )
-        run $* ;;
+        shell "$@"
+        ;;
+    local_run )
+        local_run "$@"
+        ;;
+    execute )
+        execute "$@"
+        ;;
     cleanup )
-        cleanup $* ;;
+        cleanup "$@"
+        ;;
     * )
-        echo "Usage: $0 (setup|shell|run|cleanup)" ;;
+        echo "Usage: $0 (setup|shell|local_run|execute|cleanup)" ;;
 esac
