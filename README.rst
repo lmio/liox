@@ -70,6 +70,4 @@ For organizers: actual production scripts are in internal SVN under folder
 Latest ISO
 ----------
 
-Latest ISO images can be found here_:
-
-.. _here: http://ks.jakstys.lt/lio/
+Latest ISO images can be found in: http://ks.jakstys.lt/lio/
