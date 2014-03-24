@@ -66,3 +66,10 @@ more features, see help::
 
 For organizers: actual production scripts are in internal SVN under folder
 ``TC``.
+
+Latest ISO
+----------
+
+Latest ISO images can be found here_:
+
+.. _here: http://ks.jakstys.lt/lio/
