@@ -20,7 +20,7 @@ clean:
 AUTO := preseed/file=/cdrom/preseed/auto.cfg
 DBG := DEBCONF_DEBUG=5
 vm: liox-$(VSN).vdi liox-$(VSN).iso
-	kvm -no-reboot \
+	kvm -no-reboot -smp 2 \
 		-cdrom liox-$(VSN).iso \
 		-kernel binary/install/vmlinuz \
 		-initrd binary/install/initrd.gz \
