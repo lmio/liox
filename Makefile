@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-VSN = $(shell git describe --tags)
+VSN ?= $(shell git describe --tags)
 
 .PHONY: clean vm iso
 
