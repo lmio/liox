@@ -23,16 +23,16 @@ setup() {
     fi
     [ ! -b /dev/mapper/nbd0p1 ] && kpartx -sa /dev/nbd0
     [ ! -b /dev/mapper/nbd0p1 ] && fatal "kpartx -sa /dev/nbd0 failed"
-    mkdir -p mnt
-    if [ ! -f mnt/vmlinuz ]; then
-        mount /dev/mapper/nbd0p1 mnt || fatal "mount /dev/mapper/nbd0p1 failed"
+    mkdir -p target
+    if [ ! -f target/vmlinuz ]; then
+        mount /dev/mapper/nbd0p1 target || fatal "mount /dev/mapper/nbd0p1 failed"
     fi
     echo Setup successful
 }
 
 cleanup() {
-    if [ -f mnt/vmlinuz ]; then
-        umount mnt || fatal "umount mnt failed"
+    if [ -f target/vmlinuz ]; then
+        umount target || fatal "umount target failed"
     fi
     [ -b /dev/mapper/nbd0p1 ] && kpartx -d /dev/nbd0
     [ -b /dev/mapper/nbd0p1 ] && fatal "kpartx -d /dev/nbd0 failed"
@@ -42,25 +42,25 @@ cleanup() {
 }
 
 shell() {
-    [ ! -f mnt/vmlinuz ] && fatal "run setup first"
-    chroot mnt /bin/bash
+    [ ! -f target/vmlinuz ] && fatal "run setup first"
+    chroot target /bin/bash
 }
 
 local_run() {
     SCRIPT="$2"
     [ ! -x "$SCRIPT" ] && fatal "usage: $0 local_run <executable> <args>"
-    [ ! -f mnt/vmlinuz ] && fatal "run setup first"
+    [ ! -f target/vmlinuz ] && fatal "run setup first"
 
-    cp "$SCRIPT" mnt/tmp/liox_tmp
+    cp "$SCRIPT" target/tmp/liox_tmp
     shift;
-    chroot mnt tmp/liox_tmp "$@"
+    chroot target tmp/liox_tmp "$@"
 }
 
 execute() {
     [ -z "$2" ] && fatal "use $0 shell for shell"
-    [ ! -f mnt/vmlinuz ] && fatal "run setup first"
+    [ ! -f target/vmlinuz ] && fatal "run setup first"
     shift;
-    chroot mnt "$@"
+    chroot target "$@"
 }
 
 case $OP in
