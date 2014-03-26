@@ -24,5 +24,5 @@ vm: liox-$(VSN).vdi liox-$(VSN).iso
 		-cdrom liox-$(VSN).iso \
 		-kernel binary/install/vmlinuz \
 		-initrd binary/install/initrd.gz \
-		-append "vga=788 auto=true priority=critical keymap=us $(AUTO) $(DBG)" \
+		-append "vga=788 auto=true priority=critical $(AUTO) $(DBG)" \
 		liox-$(VSN).vdi
