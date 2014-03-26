@@ -2,6 +2,10 @@
 
 VSN = $(shell git describe --tags)
 
+.PHONY: clean vm iso
+
+iso: liox-$(VSN).iso
+
 liox-$(VSN).iso:
 	echo liox-$(VSN) > config/includes.chroot/etc/liox_version
 	lb build
@@ -10,7 +14,6 @@ liox-$(VSN).iso:
 liox-$(VSN).vdi:
 	qemu-img create -f vdi $@ 10G
 
-.PHONY: clean vm
 clean:
 	lb clean
 
