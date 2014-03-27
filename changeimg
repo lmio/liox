@@ -44,7 +44,7 @@ cleanup() {
 
 local_run() {
     SCRIPT="$2"
-    [ ! -x "$SCRIPT" ] && fatal "usage: $0 local_run <executable> <args>"
+    [ ! -x "$SCRIPT" ] && fatal "usage: changeimg local_run <executable> <args>"
     [ ! -f target/vmlinuz ] && fatal "run setup first"
 
     cp "$SCRIPT" target/tmp/liox_tmp
