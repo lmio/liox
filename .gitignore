@@ -14,5 +14,7 @@
 /chroot.packages.install
 /chroot.packages.live
 /hdd-*.vdi
-/local
 /config/includes.chroot/etc/liox_version
+/target
+/extra_config
+/liox-*
