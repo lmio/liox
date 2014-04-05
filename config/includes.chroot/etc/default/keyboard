@@ -1,6 +1,0 @@
-XKBMODEL="pc105"
-XKBLAYOUT="lt,lt"
-XKBVARIANT="us,"
-XKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"
-
-BACKSPACE="guess"
