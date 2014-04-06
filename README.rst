@@ -71,7 +71,8 @@ For organizers: actual production scripts are in internal SVN under folder
 Latest ISOs
 -----------
 
-Latest ISO images can be found in: http://iso.lmio.lt/
+Even if building the image is trivial, some pre-built images are available
+for convenience. You may find them here: http://iso.lmio.lt/
 
 Changelog
 ---------
