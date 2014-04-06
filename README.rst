@@ -1,7 +1,8 @@
-LIOX, the Linux distribution for LIO2014 
-----------------------------------------
+LIOX, the Linux distribution for LIO2014 and BOI2014
+----------------------------------------------------
 
-Linux distribution for Lithuania Informatics Olympiad 2014.
+Linux distribution for Lithuania Informatics Olympiad 2014 (used: 0.0.5) and
+Baltics Informatics Olympiad 2014.
 
 Getting started
 ---------------
@@ -67,7 +68,18 @@ more features, see help::
 For organizers: actual production scripts are in internal SVN under folder
 ``TC``.
 
-Latest ISO
-----------
+Latest ISOs
+-----------
 
 Latest ISO images can be found in: http://iso.lmio.lt/
+
+Changelog
+---------
+
+* 0.1.1 - switch back to sysvinit due to systemd incompleteness (see git log).
+  Testable version.
+* 0.1.0 - everything translated to english. Moved to systemd init.
+* 0.0.5 - lithuanian keymap. Used in LIO2014.
+* 0.0.4 - add kdevelop4, Xorg drivers, management scripts.
+* 0.0.3 - change to SMP kernel (requires PAE), enable networking in preseed.
+* 0.0.2 - first usable version.
