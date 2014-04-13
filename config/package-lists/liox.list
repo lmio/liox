@@ -6,8 +6,8 @@ iceweasel system-config-printer conky
 xserver-xorg-video-all virtualbox-guest-x11
 
 # Desktop editors, IDEs
-vim-gtk joe lazarus gedit scite geany leafpad codeblocks eclipse-cdt
-kdevelop
+vim-gtk joe lazarus gedit scite geany geany-plugins leafpad codeblocks
+eclipse-cdt kdevelop
 
 # Console utilities/console editors
 zsh mc emacs nano git mercurial ipython
