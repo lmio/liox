@@ -4,6 +4,12 @@ LIOX, the Linux distribution for LIO2014 and BOI2014
 Linux distribution for Lithuania Informatics Olympiad 2014 (used: 0.0.5) and
 Baltics Informatics Olympiad 2014.
 
+Latest ISOs
+-----------
+
+For your convenience pre-built images are available. You may find them here:
+http://iso.lmio.lt/. Always pick the latest version.
+
 Getting started
 ---------------
 
@@ -67,12 +73,6 @@ more features, see help::
 
 For organizers: actual production scripts are in internal SVN under folder
 ``TC``.
-
-Latest ISOs
------------
-
-Even if building the image is trivial, some pre-built images are available
-for convenience. You may find them here: http://iso.lmio.lt/
 
 Changelog
 ---------
