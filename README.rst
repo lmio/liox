@@ -10,10 +10,11 @@ Latest ISOs
 For your convenience pre-built images are available. You may find them here:
 http://iso.lmio.lt/. Always pick the latest version.
 
-Getting started
----------------
+Building the ISO
+----------------
 
-To generate the ``liox-VERSION.iso``, type::
+If you want to modify the configuration and build the ISO yourself, this
+section is for you. To generate the ``liox-VERSION.iso``, type::
 
     $ make
 
