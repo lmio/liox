@@ -77,6 +77,7 @@ For organizers: actual production scripts are in internal SVN under folder
 Changelog
 ---------
 
+* 0.1.2 - add geany-plugins (for debugger support in geany IDE).
 * 0.1.1 - switch back to sysvinit due to systemd incompleteness (see git log).
   Testable version.
 * 0.1.0 - everything translated to english. Moved to systemd init.
