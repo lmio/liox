@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+case "${1}" in
+	prereqs)
+		echo "ntfs_3g"
+		exit 0
+		;;
+esac
+
+if [ "x${LOOPROOT}" != "x" ]; then
+	sleep 2
+	modprobe loop
+	mkdir -p /mnt/looproot
+	mount -t ntfs-3g ${LOOPROOT} /mnt/looproot
+	losetup /dev/loop0 /mnt/looproot/${LOOPSRC}
+	kpartx -a /dev/loop0
+
+	mkdir -p /run/sendsigs.omit.d
+	pidof mount.ntfs-3g >> /run/sendsigs.omit.d/ntfs-3g
+fi
+
+exit 0
