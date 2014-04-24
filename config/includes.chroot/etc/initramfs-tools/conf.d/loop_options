@@ -1,0 +1,19 @@
+export LOOPROOT=
+export LOOPFSTYPE=ntfs-3g
+export LOOPSRC=
+
+for x in $(cat /proc/cmdline); do
+	case $x in
+	looproot=*)
+		LOOPROOT=${x#looproot=}
+		case $LOOPROOT in
+		UUID=*)
+			LOOPROOT="/dev/disk/by-uuid/${LOOPROOT#UUID=}"
+			;;
+		esac
+		;;
+	loopsrc=*)
+		LOOPSRC=${x#loopsrc=}
+		;;
+	esac
+done	
