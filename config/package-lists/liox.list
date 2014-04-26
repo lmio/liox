@@ -21,7 +21,7 @@ lua5.2 ruby python python3 clang
 # Network and system utilities
 strace lsof tree nmap netcat tightvncserver curl dnsutils telnet screen
 iotop tmux htop x11vnc kpartx autossh tsocks units openssh-server mlocate
-bridge-utils bash-completion
+bridge-utils bash-completion rfkill apt-file
 
 # Documentation
 stl-manual gdb-doc gcc-doc glibc-doc manpages manpages-posix-dev fp-docs
