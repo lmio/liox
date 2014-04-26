@@ -2,9 +2,9 @@ alignment top_right
 background no
 border_width 1
 cpu_avg_samples 2
-default_color black
-default_outline_color black
-default_shade_color black
+default_color white
+default_outline_color white
+default_shade_color white
 draw_borders no
 draw_graph_borders yes
 draw_outline no
@@ -32,16 +32,16 @@ show_graph_scale no
 show_graph_range no
 
 TEXT
-${color black}Uptime:$color $uptime
-${color black}Version: $color ${exec cat /etc/liox_version}
-${color black}Frequency:$color $freq_g
-${color black}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color black}CPU Usage:$color $cpu% ${cpubar 4}
-${color black}IP addrs: $color ${addrs}
+${color grey}Uptime:$color $uptime
+${color grey}Version: $color ${exec cat /etc/liox_version}
+${color grey}Frequency:$color $freq_g
+${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color grey}CPU Usage:$color $cpu% ${cpubar 4}
+${color grey}IP addrs: $color ${addrs}
 $hr
-${color black}Name               PID   CPU%   MEM%
-${color black} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color black} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color black} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color black} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+${color grey}Name               PID   CPU%   MEM%
+${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
 $hr
