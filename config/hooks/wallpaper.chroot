@@ -2,4 +2,4 @@
 
 update-alternatives \
     --install /usr/share/images/desktop-base/desktop-background \
-    desktop-background /usr/share/images/desktop-base/boi2014_logo.png 90
+    desktop-background /usr/share/images/desktop-base/lmio_logo.jpg 90
