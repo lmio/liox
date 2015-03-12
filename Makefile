@@ -1,6 +1,10 @@
 #!/usr/bin/make -f
 
 VSN ?= $(shell git describe --tags)
+QEMU ?= kvm
+
+#DISPLAY = vga=788 # for nice graphics
+DISPLAY = console=tty0 console=ttyS0,38400n8  # serial console
 
 .PHONY: clean vm iso
 
@@ -20,9 +24,10 @@ clean:
 AUTO := preseed/file=/cdrom/preseed/auto.cfg
 DBG := DEBCONF_DEBUG=5
 vm: liox-$(VSN).vdi liox-$(VSN).iso
-	kvm -no-reboot -smp 2 \
+	$(QEMU) -no-reboot -smp 2 \
+		-nographic \
 		-cdrom liox-$(VSN).iso \
 		-kernel binary/install/vmlinuz \
 		-initrd binary/install/initrd.gz \
-		-append "vga=788 auto=true priority=critical keymap=us $(AUTO) $(DBG)" \
+		-append "$(DISPLAY) auto=true priority=critical keymap=us $(AUTO) $(DBG)" \
 		liox-$(VSN).vdi
