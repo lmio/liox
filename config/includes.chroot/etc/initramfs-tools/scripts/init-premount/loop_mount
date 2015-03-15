@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 case "${1}" in
 	prereqs)
 		echo "ntfs_3g"
@@ -9,16 +7,42 @@ case "${1}" in
 		;;
 esac
 
+. /scripts/functions
+
 if [ "x${LOOPROOT}" != "x" ]; then
+	lprootp=/mnt/looproot
+	lprootd=/dev/loop0
+
 	sleep 2
 	modprobe loop
-	mkdir -p /mnt/looproot
-	mount -t ntfs-3g ${LOOPROOT} /mnt/looproot
-	losetup /dev/loop0 /mnt/looproot/${LOOPSRC}
-	kpartx -a /dev/loop0
+	mkdir -p ${lprootp}
+	mount -t ntfs-3g ${LOOPROOT} ${lprootp}
+
+	if [ "x${LOOPGET}" != "x" ]; then
+		configure_networking
+		/usr/bin/wget -P ${lprootp} -c ${LOOPGET} || {
+			echo wget failed $?
+			read
+			panic
+		}
+
+		outfile=${LOOPGET##http*/}
+		outext=${outfile##*.}
+		if [ "${outext}" = "xz" ]; then
+			/usr/bin/xz -d ${lprootp}/${outfile}
+		fi
+		unset outfile
+		unset outext
+	fi
+
+	losetup ${lprootd} ${lprootp}/${LOOPSRC}
+	kpartx -a ${lprootd}
 
 	mkdir -p /run/sendsigs.omit.d
 	pidof mount.ntfs-3g >> /run/sendsigs.omit.d/ntfs-3g
+
+	unset lprootp
+	unset lprootd
 fi
 
 exit 0
