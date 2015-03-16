@@ -9,6 +9,9 @@ case "${1}" in
 esac
 
 . /usr/share/initramfs-tools/hook-functions
-copy_exec /sbin/kpartx /sbin
+copy_exec /sbin/kpartx /sbin/
+copy_exec /usr/bin/wget /usr/bin/
+copy_exec /usr/bin/xz /usr/bin/
+copy_exec /bin/gzip /bin/
 
 exit 0

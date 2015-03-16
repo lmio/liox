@@ -1,6 +1,7 @@
 export LOOPROOT=
 export LOOPFSTYPE=ntfs-3g
 export LOOPSRC=
+export LOOPGET=
 
 for x in $(cat /proc/cmdline); do
 	case $x in
@@ -14,6 +15,9 @@ for x in $(cat /proc/cmdline); do
 		;;
 	loopsrc=*)
 		LOOPSRC=${x#loopsrc=}
+		;;
+	loopget=*)
+		LOOPGET=${x#loopget=}
 		;;
 	esac
 done	
