@@ -12,5 +12,6 @@ esac
 copy_exec /sbin/kpartx /sbin/
 copy_exec /usr/bin/wget /usr/bin/
 copy_exec /usr/bin/xz /usr/bin/
+copy_exec /bin/gzip /bin/
 
 exit 0
