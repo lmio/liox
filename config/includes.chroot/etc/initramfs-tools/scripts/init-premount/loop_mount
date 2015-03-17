@@ -19,13 +19,13 @@ if [ "x${LOOPROOT}" != "x" ]; then
 	modprobe loop
 	mkdir -p ${lprootp}
 
-	log_begin_msg "mounting ${LOOPROOT}"
+	_log_msg "Mounting ${LOOPROOT} to ${lprootp} ...\n"
 	mount -t ntfs-3g ${LOOPROOT} ${lprootp} || {
 		rc=$?
 		log_failure_msg "mounting failed ${rc}"
 		exit ${rc}
 	}
-	log_end_msg
+	_log_msg "... mounting done.\n"
 
 	case ${LIOXWIPE} in
 	1)
@@ -50,48 +50,48 @@ if [ "x${LOOPROOT}" != "x" ]; then
 	if [ -f ${loopfile} ]; then
 		log_success_msg "loop drive file exists and is $(stat -c %s ${loopfile}) bytes"
 	elif [ "x${LOOPGET}" != "x" ]; then
-		_log_msg "loop drive file does not exist, will attempt to fetch it from ${LOOPGET}"
+		_log_msg "Loop drive file does not exist, will attempt to fetch it from ${LOOPGET}\n"
 
 		set +e
-		log_begin_msg "configuring networking"
+		_log_msg "Configuring networking ...\n"
 		configure_networking
-		log_end_msg
+		_log_msg "... configuring done\n"
 		set -e
 
-		log_begin_msg "starting wget -P ${lprootp} -c ${LOOPGET}"
+		_log_msg "Starting wget -P ${lprootp} -c ${LOOPGET} ...\n"
 		/usr/bin/wget -P ${lprootp} -c ${LOOPGET} || {
 			rc=$?
 			log_failure_msg "wget failed ${rc}"
 			exit ${rc}
 		}
-		log_end_msg
+		_log_msg "... wget finished\n"
 
 		outfile=${LOOPGET##http*/}
 		out_ext=${outfile##*.}
 		out_with_stripped_ext=${outfile%.*}
 
-		_log_msg "Assuming that we fetched file ${outfile}"
+		_log_msg "Assuming that we fetched file ${outfile}\n"
 		case ${out_ext} in
 		xz)
-			log_begin_msg "decompress xz'ed image"
+			_log_msg "Decompressing xz'ed image ...\n"
 			/usr/bin/xz --keep -v -d ${lprootp}/${outfile} || {
 				rc=$?
 				log_failure_msg "xz failed ${rc}"
 				exit ${rc}
 			}
-			log_end_msg
+			_log_msg "... decompressing done\n"
 			;;
 		gz)
-			log_begin_msg "decompress gzip'ed image"
+			_log_msg "Decompressing gzip'ed image ...\n"
 			/bin/gzip -v -d ${lprootp}/${outfile} > ${lprootp}/${out_with_stripped_ext} || {
 				rc=$?
 				log_failure_msg "gzip failed ${rc}"
 				exit ${rc}
 			}
-			log_end_msg
+			_log_msg "... decompressing done\n"
 			;;
 		raw)
-			_log_msg "fetched file with .raw extension, nothing else to do"
+			_log_msg "Fetched file with .raw extension, nothing else to do\n"
 			;;
 		*)
 			log_failure_msg "fetched file with unsupported extension, failing"
@@ -112,23 +112,23 @@ if [ "x${LOOPROOT}" != "x" ]; then
 		exit 1
 	fi
 
-	log_begin_msg "setting up loop device ${lprootd} from ${loopfile}"
+	_log_msg "Setting up loop device ${lprootd} from ${loopfile} ...\n"
 	losetup ${lprootd} ${loopfile} || {
 		rc=$?
 		log_failure_msg "losetup failed ${rc}"
 		exit ${rc}
 	}
-	log_end_msg
+	_log_msg "... losetup done\n"
 
-	log_begin_msg "probing loop device for partitions"
+	_log_msg "Probing loop device for partitions ...\n"
 	kpartx -a ${lprootd} || {
 		rc=$?
 		log_failure_msg "kpartx failed ${rc}"
 		exit ${rc}
 	}
-	log_end_msg
+	_log_msg "... probing done\n"
 
-	_log_msg "recording ntfs-3g driver in no-kill list"
+	_log_msg "Recording ntfs-3g driver in no-kill list\n"
 	mkdir -p /run/sendsigs.omit.d
 	pidof mount.ntfs-3g >> /run/sendsigs.omit.d/ntfs-3g
 
