@@ -12,8 +12,6 @@ esac
 . /scripts/functions
 
 if [ "x${LOOPROOT}" != "x" ]; then
-	_log_msg "Will attempt to use ${LOOPSRC} from ${LOOPROOT} as loop mounted drive"
-
 	lprootp=/mnt/looproot
 	lprootd=/dev/loop0
 
@@ -29,6 +27,25 @@ if [ "x${LOOPROOT}" != "x" ]; then
 	}
 	log_end_msg
 
+	case ${LIOXWIPE} in
+	1)
+		_log_msg "Deleting liox-*.raw from ${LOOPROOT}\n"
+		rm -v -f ${LOOPROOT}/liox-*.raw
+		;;
+	2)
+		_log_msg "Deleting liox-*.raw* from ${LOOPROOT}\n"
+		rm -v -f ${LOOPROOT}/liox-*.raw*
+		;;
+	3)
+		_log_msg "Deleting liox-*.raw* from ${LOOPROOT}\n"
+		rm -v -f ${LOOPROOT}/liox-*.raw*
+		_log_msg "Dropping to shell\n"
+		exec /bin/sh
+		exit 1
+		;;
+	esac
+
+	_log_msg "Will attempt to use ${LOOPSRC} from ${LOOPROOT} as loop mounted drive\n"
 	loopfile=${lprootp}/${LOOPSRC}
 	if [ -f ${loopfile} ]; then
 		log_success_msg "loop drive file exists and is $(stat -c %s ${loopfile}) bytes"
