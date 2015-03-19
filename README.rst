@@ -36,6 +36,30 @@ Alternatively, you can select "fully automated installation" in the menu if you
 are happy with the defaults (uses dangerous preseed script, be careful), or
 "install" for standard debian installation.
 
+Special kernel parameters
+-------------------------
+
+A number of parameters can be passed on the kernel command line to facilitate
+booting from loop-mounted drives. ``looproot`` and ``loopsrc`` are mandatory
+if you wish to perform such a boot. If a loop-mounted boot is performed,
+``root=/dev/mapper/loop0p1`` should also be specified.
+
+- ``looproot=`` specifies the block device which contains the drive image, this device
+  will be mounted
+- ``loopsrc=`` specifies a path on the looproot to the loop drive image, it should be
+  a file ending in ``.raw``
+- ``loopget=`` specifies a URL which will be fetched to the looproot. It must be a file
+  ending in ``.raw.xz``, ``.raw.gz`` or just ``.raw``. If the file is compressed, it is
+  decompressed into the looproot and the source file is kept on-disk. If ``loopsrc``
+  already exists, then ``loopget`` is ignored.
+- ``lioxwipe=`` cleans up files on the looproot before performing any further operations.
+  Possible values are:
+    - 1 - deletes the pattern ``liox-*.raw``
+    - 2 - deletes the pattern ``liox-*.raw*``
+    - 3 - deletes the pattern ``liox-*.raw*`` and drops to a shell instead of continuing boot
+
+A ``.raw`` file is a complete drive image with partition tables.
+
 Contributing
 ------------
 
