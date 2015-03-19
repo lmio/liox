@@ -1,0 +1,86 @@
+#!/bin/bash
+set -euo pipefail
+
+# A tool to manipulate a VDI image. Useful for adding/removing users,
+# changing passwords, setting up ssh keys, etc. without starting the VM.
+
+OP=${1-}
+
+fatal() {
+    printf %s\\n "fatal error: $@"
+    exit 1
+}
+
+_get_loopdev() {
+    DISK=$1
+    losetup -a | awk -F: "/$(basename ${DISK})/ { print \$1 }"
+}
+
+setup() {
+    DISK="${2-}"
+    [ ! -f "$DISK" ] && fatal "usage: $0 setup <harddisk.raw>"
+    LOOPDEV=`_get_loopdev ${DISK}`
+    if [ -z "$LOOPDEV" ]; then
+        LOOPDEV=`losetup -fv $DISK | awk '{ print $NF; exit }'`
+    fi
+    if [ -z "$LOOPDEV" ]; then
+        fatal "failed to attach $DISK to /dev/loopX"
+    fi
+    LOOPP1=/dev/mapper/${LOOPDEV#/dev/}p1
+    [ ! -b $LOOPP1 ] && kpartx -sa $LOOPDEV
+    [ ! -b $LOOPP1 ] && fatal "kpartx -sa $LOOPDEV failed"
+    mkdir -p target
+    if [ ! -f target/vmlinuz ]; then
+        mount $LOOPP1 target || fatal "mount $LOOPP1 failed"
+    fi
+    echo Setup successful
+}
+
+cleanup() {
+    DISK="${2-}"
+    [ ! -f "$DISK" ] && fatal "usage: $0 setup <harddisk.raw>"
+    if [ -f target/vmlinuz ]; then
+        umount target || fatal "umount target failed"
+    fi
+    LOOPDEV=`_get_loopdev ${DISK}`
+    LOOPP1=/dev/mapper/${LOOPDEV#/dev/}p1
+    [ -b $LOOPP1 ] && kpartx -d $LOOPDEV
+    [ -b $LOOPP1 ] && fatal "kpartx -d $LOOPDEV failed"
+    [ -n "`_get_loopdev ${DISK}`" ] && losetup -d $LOOPDEV
+    [ -n "`_get_loopdev ${DISK}`" ] && fatal "losetup -d $LOOPDEV failed"
+    echo Cleanup successful
+}
+
+local_run() {
+    SCRIPT="$2"
+    [ ! -x "$SCRIPT" ] && fatal "usage: changeimg local_run <executable> <args>"
+    [ ! -f target/vmlinuz ] && fatal "run setup first"
+
+    cp "$SCRIPT" target/tmp/liox_tmp
+    shift;
+    exec chroot target tmp/liox_tmp "$@"
+}
+
+chroot() {
+    [ ! -f target/vmlinuz ] && fatal "run setup first"
+    [ -z "$2" ] && exec chroot target /bin/bash -i
+    shift;
+    exec chroot target "$@"
+}
+
+case $OP in
+    setup )
+        setup "$@"
+        ;;
+    local_run )
+        local_run "$@"
+        ;;
+    chroot )
+        chroot "$@"
+        ;;
+    cleanup )
+        cleanup "$@"
+        ;;
+    * )
+        echo "Usage: $0 (setup|local_run|chroot|cleanup)" ;;
+esac
