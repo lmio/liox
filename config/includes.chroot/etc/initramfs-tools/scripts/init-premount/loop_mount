@@ -30,15 +30,15 @@ if [ "x${LOOPROOT}" != "x" ]; then
 	case ${LIOXWIPE} in
 	1)
 		_log_msg "Deleting liox-*.raw from ${LOOPROOT}\n"
-		rm -v -f ${LOOPROOT}/liox-*.raw
+		/usr/bin/rm -v -f ${LOOPROOT}/liox-*.raw
 		;;
 	2)
 		_log_msg "Deleting liox-*.raw* from ${LOOPROOT}\n"
-		rm -v -f ${LOOPROOT}/liox-*.raw*
+		/usr/bin/rm -v -f ${LOOPROOT}/liox-*.raw*
 		;;
 	3)
 		_log_msg "Deleting liox-*.raw* from ${LOOPROOT}\n"
-		rm -v -f ${LOOPROOT}/liox-*.raw*
+		/usr/bin/rm -v -f ${LOOPROOT}/liox-*.raw*
 		_log_msg "Dropping to shell\n"
 		exec /bin/sh
 		exit 1
