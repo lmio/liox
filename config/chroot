@@ -42,4 +42,5 @@ LB_UPDATES="true"
 
 # $LB_BACKPORTS: enable backports updates
 # (Default: false)
-LB_BACKPORTS="false"
+# codeblocks package is only in jessie-backports
+LB_BACKPORTS="true"

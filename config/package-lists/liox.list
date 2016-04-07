@@ -1,31 +1,22 @@
-# Desktop stuff
 lxde task-laptop xarchiver feh gpicview scrot evince
 iceweasel system-config-printer conky
 
-# Kernel, video
 xserver-xorg-video-all virtualbox-guest-x11
 
-# Desktop editors, IDEs
 vim-gtk joe lazarus gedit scite geany geany-plugins leafpad codeblocks
 eclipse-cdt kdevelop
 
-# Console utilities/console editors
-zsh mc emacs nano git mercurial ipython
+zsh mc emacs nano git ipython
 
-# Compilers, debuggers, profilers
 make gcc g++ fpc gdb ddd valgrind
 
-# Misc programming languages
-lua5.2 ruby python python3 clang
+ruby python python3
 
-# Network and system utilities
 strace lsof tree nmap netcat tightvncserver curl dnsutils telnet screen
 iotop tmux htop x11vnc kpartx autossh tsocks units openssh-server mlocate
-bridge-utils bash-completion rfkill apt-file
+bridge-utils bash-completion rfkill apt-file ntp locales
 
-# Documentation
-stl-manual gdb-doc gcc-doc glibc-doc manpages manpages-posix-dev fp-docs
-c-cpp-reference
+stl-manual gdb-doc gcc-doc manpages fp-docs
+cppreference-doc-en-html
 
-# Hangman
 bsdgames

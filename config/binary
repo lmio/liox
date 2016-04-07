@@ -26,7 +26,7 @@ LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live config memtest noapic noapm nodma nomce n
 
 # $LB_BOOTLOADER: set bootloader
 # (Default: syslinux)
-LB_BOOTLOADER="syslinux"
+LB_BOOTLOADER="systemd"
 
 # $LB_CHECKSUMS: set checksums
 # (Default: md5)
@@ -51,7 +51,7 @@ LB_DEBIAN_INSTALLER="live"
 
 # $LB_DEBIAN_INSTALLER_DISTRIBUTION: set debian-installer suite
 # (Default: empty)
-LB_DEBIAN_INSTALLER_DISTRIBUTION="wheezy"
+LB_DEBIAN_INSTALLER_DISTRIBUTION="jessie"
 
 # $LB_DEBIAN_INSTALLER_PRESEEDFILE: set debian-installer preseed filename/url
 # (Default: )
@@ -71,7 +71,7 @@ LB_HDD_LABEL="DEBIAN_LIVE"
 
 # $LB_HDD_SIZE: set hdd filesystem size
 # (Default: 10000)
-LB_HDD_SIZE="10000"
+LB_HDD_SIZE="7000"
 
 # $LB_ISO_APPLICATION: set iso author
 # (Default: Debian Live)
@@ -86,8 +86,8 @@ LB_ISO_PREPARER="live-build $VERSION; http://packages.qa.debian.org/live-build"
 LB_ISO_PUBLISHER="Debian Live project; http://live.debian.net/; debian-live@lists.debian.org"
 
 # $LB_ISO_VOLUME: set iso volume (max 32 chars)
-# (Default: Debian wheezy $(date +%Y%m%d-%H:%M))
-LB_ISO_VOLUME="Debian wheezy $(date +%Y%m%d-%H:%M)"
+# (Default: Debian jessie $(date +%Y%m%d-%H:%M))
+LB_ISO_VOLUME="Debian jessie $(date +%Y%m%d-%H:%M)"
 
 # $LB_JFFS2_ERASEBLOCK: set jffs2 eraseblock size
 # (Default: unset)
