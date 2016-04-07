@@ -1,0 +1,4 @@
+#!/bin/sh -ex
+sed -i -e 's/text\/html;//' /usr/share/applications/geany.desktop
+update-desktop-database
+
