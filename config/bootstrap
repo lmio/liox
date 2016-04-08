@@ -6,15 +6,15 @@ LB_ARCHITECTURES="i386"
 
 # $LB_DISTRIBUTION: select distribution to use
 # (Default: wheezy)
-LB_DISTRIBUTION="wheezy"
+LB_DISTRIBUTION="jessie"
 
 # $LB_PARENT_DISTRIBUTION: select parent distribution to use
 # (Default: wheezy)
-LB_PARENT_DISTRIBUTION="wheezy"
+LB_PARENT_DISTRIBUTION="jessie"
 
 # $LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION: select parent distribution for debian-installer to use
 # (Default: wheezy)
-LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION="wheezy"
+LB_PARENT_DEBIAN_INSTALLER_DISTRIBUTION="jessie"
 
 # $LB_PARENT_MIRROR_BOOTSTRAP: set parent mirror to bootstrap from
 # (Default: http://http.debian.net/debian)
