@@ -26,7 +26,7 @@ LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live config memtest noapic noapm nodma nomce n
 
 # $LB_BOOTLOADER: set bootloader
 # (Default: syslinux)
-LB_BOOTLOADER="systemd"
+LB_BOOTLOADER="syslinux"
 
 # $LB_CHECKSUMS: set checksums
 # (Default: md5)

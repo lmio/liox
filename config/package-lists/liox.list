@@ -3,20 +3,20 @@ iceweasel system-config-printer conky
 
 xserver-xorg-video-all virtualbox-guest-x11
 
-vim-gtk joe lazarus gedit scite geany geany-plugins leafpad codeblocks
-eclipse-cdt kdevelop
+vim-gtk joe gedit scite geany geany-plugins leafpad codeblocks
+eclipse-cdt kdevelop kate
 
 zsh mc emacs nano git ipython
 
-make gcc g++ fpc gdb ddd valgrind
+make gcc g++ gdb ddd valgrind clang
 
 ruby python python3
 
-strace lsof tree nmap netcat tightvncserver curl dnsutils telnet screen
-iotop tmux htop x11vnc kpartx autossh tsocks units openssh-server mlocate
+strace lsof tree curl dnsutils screen
+iotop tmux htop kpartx tsocks units mlocate
 bridge-utils bash-completion rfkill apt-file ntp locales
 
-stl-manual gdb-doc gcc-doc manpages fp-docs
+stl-manual gdb-doc gcc-doc manpages
 cppreference-doc-en-html
 
-bsdgames
+python3-requests

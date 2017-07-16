@@ -9,8 +9,16 @@
 /binary.iso.zsync
 /binary.packages
 /binary.udeb
+/live-image-*.contents
+/live-image-*.deb
+/live-image-*.files
+/live-image-*.iso
+/live-image-*.iso.zsync
+/live-image-*.packages
+/live-image-*.udeb
 /cache
 /chroot
+/chroot.files
 /chroot.packages.install
 /chroot.packages.live
 /hdd-*.vdi
