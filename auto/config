@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -e
+
+case "$LIOX_ARCH" in
+    i386)
+        LX_ARCHS=i386
+        LX_FLAVS=686-pae
+        ;;
+    amd64)
+        LX_ARCHS=amd64
+        LX_FLAVS=amd64
+        ;;
+    *)
+        echo "Please specify LIOX_ARCH (i386 or amd64)"
+        exit 1
+        ;;
+esac
+
+lb config noauto \
+    --architectures $LX_ARCHS \
+    --linux-flavours $LX_FLAVS \
+    --distribution stretch \
+    --archive-areas "main contrib non-free" \
+    --debian-installer live \
+    --hdd-size 7000 \
+    --security true \
+    --updates true \
+    "${@}"
+
+cp -rT config_overlay config

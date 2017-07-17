@@ -1,7 +1,7 @@
 lxde task-laptop xarchiver feh gpicview scrot evince
 iceweasel system-config-printer conky
 
-xserver-xorg-video-all virtualbox-guest-x11
+xserver-xorg-video-all
 
 vim-gtk joe gedit scite geany geany-plugins leafpad codeblocks
 eclipse-cdt kdevelop kate

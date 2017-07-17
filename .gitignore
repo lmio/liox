@@ -1,7 +1,6 @@
 /.build
 /.lock
 /.stage
-/auto
 /binary
 /binary.contents
 /binary.deb
@@ -9,6 +8,7 @@
 /binary.iso.zsync
 /binary.packages
 /binary.udeb
+/config
 /live-image-*.contents
 /live-image-*.deb
 /live-image-*.files
@@ -22,7 +22,7 @@
 /chroot.packages.install
 /chroot.packages.live
 /hdd-*.vdi
-/config/includes.chroot/etc/liox_version
 /target
 /extra_config
 /liox-*
+/build.log
