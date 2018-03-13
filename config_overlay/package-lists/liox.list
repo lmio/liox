@@ -15,6 +15,7 @@ ruby python python3
 strace lsof tree curl dnsutils screen
 iotop tmux htop kpartx tsocks units mlocate
 bridge-utils bash-completion rfkill apt-file ntp locales
+iptables-persistent
 
 stl-manual gdb-doc gcc-doc manpages
 cppreference-doc-en-html
