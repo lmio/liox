@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=Conky
-Exec=/usr/bin/conky
+Exec=/usr/bin/conky --pause=3 -c /usr/share/liox-config/conkyrc
 Terminal=false
 Type=Application
