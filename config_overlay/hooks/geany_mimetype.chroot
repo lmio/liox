@@ -1,4 +1,10 @@
 #!/bin/sh -ex
-sed -i -e 's/text\/html;//' /usr/share/applications/geany.desktop
-update-desktop-database
 
+# Fix syntax error in evince.desktop preventing update-desktop-database from proceeding
+sed -i -e 's/;;/;/' /usr/share/applications/evince.desktop
+
+# Remove text/html from geany's associated mimetypes, to prevent it taking over HTML file launch
+sed -i -e 's/text\/html;//' /usr/share/applications/geany.desktop
+
+# Update MIME association databases
+update-desktop-database
