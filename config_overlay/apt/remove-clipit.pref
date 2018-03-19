@@ -1,0 +1,3 @@
+Package: clipit
+Pin: version *
+Pin-Priority: -1
