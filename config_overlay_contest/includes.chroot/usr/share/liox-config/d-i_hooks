@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+for P in $(ls /usr/share/liox-config/patches/*.patch); do
+    patch -d/ -p0 < ${P}
+done
+
+update-grub

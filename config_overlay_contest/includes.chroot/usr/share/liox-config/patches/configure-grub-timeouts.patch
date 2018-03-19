@@ -1,0 +1,12 @@
+--- /etc/default/grub	2017-07-16 04:08:38.525407000 +0100
++++ /etc/default/grub.mod	2018-03-20 00:02:35.371998330 +0000
+@@ -4,7 +4,8 @@
+ #   info -f grub -n 'Simple configuration'
+ 
+ GRUB_DEFAULT=0
+-GRUB_TIMEOUT=5
++GRUB_TIMEOUT=0
++GRUB_HIDDEN_TIMEOUT=2
+ GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+ GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+ GRUB_CMDLINE_LINUX=""

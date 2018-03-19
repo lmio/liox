@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+IFS= read -r -s -p "Enter lioadmin password for GRUB: " ADMIN_PASS
+# printf "'%s'\n" "${ADMIN_PASS}"
+echo
+IFS= read -r -s -p "Repeat: " ADMIN_PASS_REPEAT
+# printf "'%s'\n" "${ADMIN_PASS_REPEAT}"
+echo
+
+if [ "${ADMIN_PASS}" != "${ADMIN_PASS_REPEAT}" ]; then
+    echo "ERROR: Passwords don't match."
+    exit 1
+fi
+
+GRUB_PWD_HASH=$(printf "%s\n%s" "${ADMIN_PASS}" "${ADMIN_PASS}" | grub-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}')
+mkdir -p config/includes.chroot/boot/grub
+cat > config/includes.chroot/boot/grub/custom.cfg <<EOF
+set superusers="lioadmin"
+password_pbkdf2 lioadmin ${GRUB_PWD_HASH}
+EOF
+
+cat >> config/includes.binary/preseed/auto.cfg <<EOF
+d-i preseed/late_command string in-target /usr/share/liox-config/d-i_hooks
+EOF

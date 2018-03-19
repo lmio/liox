@@ -31,4 +31,5 @@ lb config noauto \
 cp -rT config_overlay config
 if [ -n "${LIOX_CONTEST}" ]; then
     cp -rT config_overlay_contest config
+    ./contest-config
 fi
