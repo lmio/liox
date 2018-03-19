@@ -1,5 +1,5 @@
 lxde task-laptop xarchiver feh gpicview scrot evince
-iceweasel system-config-printer conky
+firefox-esr system-config-printer conky
 
 xserver-xorg-video-all
 
