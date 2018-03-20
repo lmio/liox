@@ -6,4 +6,6 @@ for P in $(ls /usr/share/liox-config/patches/*.patch); do
     patch -d/ -p0 < ${P}
 done
 
+cp -aT /usr/share/liox-config/post-inst-overlay /
+
 update-grub
