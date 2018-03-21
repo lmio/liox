@@ -22,6 +22,7 @@ lb config noauto \
     --linux-flavours $LX_FLAVS \
     --distribution stretch \
     --archive-areas "main contrib non-free" \
+    --debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
     --debian-installer live \
     --hdd-size 7000 \
     --security true \
@@ -29,6 +30,13 @@ lb config noauto \
     "${@}"
 
 cp -rT config_overlay config
+
+# This is required because Visual Studio Code doesn't have a 32-bit repo at the
+# moment, so we need to have a way to diverge configurations between i386/amd64.
+if [ "${LIOX_ARCH}" = "amd64" ]; then
+    cp -rT config_overlay_amd64 config
+fi
+
 if [ -n "${LIOX_CONTEST}" ]; then
     cp -rT config_overlay_contest config
     ./contest-config
