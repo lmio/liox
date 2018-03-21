@@ -8,4 +8,6 @@ done
 
 cp -aT /usr/share/liox-config/post-inst-overlay /
 
+systemctl disable apt-daily-upgrade.timer
+systemctl disable apt-daily.timer
 update-grub
