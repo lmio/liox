@@ -27,7 +27,20 @@ d-i preseed/late_command string in-target /usr/share/liox-config/d-i_hooks
 EOF
 
 echo -n "Enter lioadmin user "
-ADM_PWD_HASH=$(printf "%s\n" "${ADMIN_PASS}" | mkpasswd -m sha-512 | sed -e 's/\//\\\//g')
+ADM_PWD_HASH=$(mkpasswd -m sha-512 | sed -e 's/\//\\\//g')
 sed -i -e '/^d-i passwd\/username/ s/user$/lioadmin/' ${PRESEED}
 sed -i -e '/^d-i passwd\/user-password/ s/^d-i/#d-i/' ${PRESEED}
 sed -i -e "/^#d-i passwd\\/user-password-crypted/ { s/^#d-i/d-i/; s/\\[.*$/${ADM_PWD_HASH}/ }" ${PRESEED}
+
+echo -n "Enter d0 user "
+D0_PWD_HASH=$(mkpasswd -m sha-512)
+
+echo -n "Enter d1 user "
+D1_PWD_HASH=$(mkpasswd -m sha-512)
+
+echo -n "Enter d2 user "
+D2_PWD_HASH=$(mkpasswd -m sha-512)
+
+printf "%s" "${D0_PWD_HASH}" > config/includes.chroot/usr/share/liox-config/d0-shadow
+printf "%s" "${D1_PWD_HASH}" > config/includes.chroot/usr/share/liox-config/d1-shadow
+printf "%s" "${D2_PWD_HASH}" > config/includes.chroot/usr/share/liox-config/d2-shadow
