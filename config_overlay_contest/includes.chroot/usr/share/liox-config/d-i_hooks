@@ -8,6 +8,11 @@ done
 
 cp -aT /usr/share/liox-config/post-inst-overlay /
 
+cat >> /etc/hosts <<EOF
+34.243.103.175 olimp.cms.lmio.lt
+94.176.234.76 ctrl.lmio.lt
+EOF
+
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily.timer
 update-grub
