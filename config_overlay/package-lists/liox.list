@@ -4,7 +4,7 @@ firefox-esr system-config-printer conky
 xserver-xorg-video-all
 
 vim-gtk joe gedit scite geany geany-plugins leafpad codeblocks
-eclipse-cdt kdevelop kate
+eclipse-cdt kdevelop kate sublime-text
 
 zsh mc emacs nano git ipython
 
