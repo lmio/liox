@@ -18,6 +18,10 @@ useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d1-shadow) d1
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d2-shadow) d2
 shred --remove /usr/share/liox-config/d*-shadow
 
+# Be doubly sure
+chown root:root /etc/olimp-control/key
+chmod 400 /etc/olimp-control/key
+
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily.timer
 update-grub

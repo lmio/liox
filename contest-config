@@ -44,3 +44,13 @@ D2_PWD_HASH=$(mkpasswd -m sha-512)
 printf "%s" "${D0_PWD_HASH}" > config/includes.chroot/usr/share/liox-config/d0-shadow
 printf "%s" "${D1_PWD_HASH}" > config/includes.chroot/usr/share/liox-config/d1-shadow
 printf "%s" "${D2_PWD_HASH}" > config/includes.chroot/usr/share/liox-config/d2-shadow
+
+read -p "Path to olimp-control keyfile: " OLIMP_CONTROL_KEY
+if [ ! -f ${OLIMP_CONTROL_KEY} ]; then
+    echo "ERROR: path not found / not a file."
+    exit 1
+fi
+
+mkdir -p config/includes.chroot/etc/olimp-control
+cp ${OLIMP_CONTROL_KEY} config/includes.chroot/etc/olimp-control/key
+chmod 400 config/includes.chroot/etc/olimp-control/key
