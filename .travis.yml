@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - shellcheck
+
+script:
+  - make lint
+  - make img
+  - make test

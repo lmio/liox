@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eu
+
+WORKDIR=$1
+VSN=$2
+
+exec qemu-system-x86_64 -m 256 -daemonize -pidfile "$WORKDIR/qemu.pid" \
+    -display none \
+    -serial "file:$WORKDIR/boot.log" \
+    -append "root=/dev/sda1 rw console=ttyS0 net.ifnames=0 biosdevname=0" \
+    -device e1000,netdev=net0 \
+    -netdev user,id=net0,hostfwd=tcp::5555-:22 \
+    -kernel "${WORKDIR}/vmlinuz-${VSN}" \
+    -initrd "${WORKDIR}/initrd.img-${VSN}" \
+    -hda "${WORKDIR}/liox-${VSN}.img"

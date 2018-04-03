@@ -1,0 +1,10 @@
+[Unit]
+Description=Resize the root filesystem to fill partition
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/resize_sda
+ExecStartPost=/bin/systemctl disable %n
+
+[Install]
+WantedBy=local-fs.target

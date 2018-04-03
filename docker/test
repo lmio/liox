@@ -1,0 +1,52 @@
+#!/bin/bash
+set -euo pipefail
+set -x
+
+WORKDIR=${1}
+VSN=${2}
+
+main() {
+  # This is meant to be started in a container to verify the image boots successfully
+  pid=$WORKDIR/qemu.pid
+  if [[ -r "$pid" ]]; then
+      echo "Seems like qemu is started as pid $(cat "$pid"), reusing existing process"
+      we_started=0
+  else
+      "$WORKDIR"/docker/start "$WORKDIR" "$VSN"
+      trap cleanup EXIT
+      we_started=1
+  fi
+
+
+  # wait for ssh server to start and run a simple command
+  RET=0
+  for _ in $(seq 12); do
+      ssh -o StrictHostKeyChecking=no \
+          -i /root/.ssh/id_rsa \
+          -p5555 \
+          liox@localhost true || RET=$?
+      if [[ $RET == 0 ]]; then
+          echo "ssh succeeded"
+          break
+      fi
+      sleep 10s
+  done
+
+  if [[ $we_started == 1 ]]; then
+      trap - EXIT
+      cleanup
+  fi
+
+  if [[ $RET != 0 ]]; then
+      echo "Test failed. Boot log:"
+      cat boot.log
+  fi
+  exit $RET
+}
+
+cleanup() {
+	kill "$(cat "$WORKDIR/qemu.pid")"
+	rm "$WORKDIR/qemu.pid"
+}
+
+main

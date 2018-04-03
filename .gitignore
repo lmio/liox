@@ -18,3 +18,10 @@
 /target
 /extra_config
 /liox-*
+/initrd.img-*
+/vmlinuz-*
+
+/.tmp/
+/boot.log
+/qemu.pid
+/id_rsa.pub

@@ -31,3 +31,5 @@ vm: liox-$(VSN).vdi liox-$(VSN).iso
 		-initrd binary/install/initrd.gz \
 		-append "$(DISPLAY) auto=true priority=critical keymap=us $(AUTO) $(DBG)" \
 		liox-$(VSN).vdi
+
+include docker/docker.mk

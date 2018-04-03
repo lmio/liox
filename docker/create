@@ -1,0 +1,141 @@
+#!/bin/bash
+set -euo pipefail
+set -x
+
+# post_setup is called when the system is fully setup
+# and the relevant directories are still mounted (/dev, /sys, etc)
+post_setup() {
+    chroot /target env DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        openssh-server sudo less
+    chroot /target useradd -s /bin/bash -m -G sudo liox
+    echo '%sudo  ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/sudoers
+    echo liox:liox | chroot /target chpasswd
+
+    mkdir -p /target/home/liox/.ssh
+    cp /root/.ssh/id_rsa.pub /target/home/liox/.ssh/authorized_keys
+    chroot /target chown -R liox:liox /home/liox/.ssh
+}
+
+# pre_umount is called just before /target is unmounted
+pre_umount() {
+    if [[ -n "${KERNEL_DST:-}" ]]; then
+        cp /target/boot/vmlinuz-* "${KERNEL_DST}"
+    fi
+    if [[ -n "${INITRD_DST:-}" ]]; then
+        cp /target/boot/initrd.img-* "${INITRD_DST}"
+    fi
+}
+
+main() {
+    create
+    bootstrap
+    setup_os
+    shrink
+    cleanup
+
+    ls -lh /z
+    if [[ -n "${IMG_DST:-}" ]]; then
+        cp /z "${IMG_DST}"
+    fi
+}
+
+debug() {
+    echo "Entering a debug shell. It will be cleaned up after exit"
+    bash
+    cleanup
+}
+
+create() {
+    rm -f /z && truncate -s3G /z
+    parted -a optimal /z mklabel msdos
+    parted -a optimal /z unit mib mkpart primary ext2 1 100%
+    parted -a optimal /z set 1 boot on
+    rm -f /dev/loop0 /dev/loop0p1
+    mknod /dev/loop0 b 7 0 && losetup -P /dev/loop0 /z
+    mknod /dev/loop0p1 b 259 0
+    trap debug EXIT
+    mkfs.ext4 -T small /dev/loop0p1
+    mkdir /target
+    mount -t ext4 /dev/loop0p1 /target
+}
+
+bootstrap() {
+    debootstrap --components=main,contrib,non-free stretch /target \
+        http://ftp.lt.debian.org/debian/
+}
+
+setup_os() {
+    mount -t sysfs none /target/sys
+    mount -t proc none /target/proc
+    mount --bind /dev/pts /target/dev/pts
+    mount --bind /dev/shm /target/dev/shm
+    mount --bind /dev /target/dev
+
+    chroot /target env DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        grub2 linux-image-amd64 cloud-guest-utils
+    echo '(hd0) /dev/loop0' > /target/boot/grub/device.map
+    sed -i '/GRUB_CMDLINE_LINUX/d' /target/etc/default/grub
+    echo 'GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"' >> /target/etc/default/grub
+    chroot /target grub-mkconfig -o /boot/grub/grub.cfg
+    /target/usr/sbin/grub-install --no-floppy \
+        --root-directory=/target \
+        --grub-mkdevicemap=/target/boot/grub/device.map \
+        --directory /target/usr/lib/grub/i386-pc /dev/loop0
+    sed -i 's/loop0p1/sda1/g' /target/boot/grub/grub.cfg
+    chroot /target update-initramfs -u
+    # grub-install should keep working once booted from a physical media
+    echo '(hd0) /dev/sda' > /target/boot/grub/device.map
+
+    cp /x/docker/resize2fs_once.service /target/etc/systemd/system/
+    cp /x/docker/resize_sda /target/usr/local/sbin/
+    chroot /target systemctl enable resize2fs_once.service
+
+    {
+        echo 'auto eth0'
+        echo 'allow-hotplug eth0'
+        echo 'iface eth0 inet dhcp'
+    } >> /target/etc/network/interfaces
+
+    post_setup
+
+    pre_umount
+    umount /target/sys
+    umount /target/proc
+    umount /target/dev
+    umount /target/dev/shm
+    umount /target/dev/pts
+    umount /target
+}
+
+shrink() {
+    e2fsck -f /dev/loop0p1
+
+    # giving ~64MB free for a successful initial boot if disk is not resized
+    meg=1048576
+    block_size=$(tune2fs -l /dev/loop0p1 | awk '/Block size/{print $3}')
+    minimal_size=$(resize2fs -P /dev/loop0p1 | awk '/Estimated/{print $NF}')
+    minimal_size_b=$(echo "$minimal_size*$block_size" | bc)
+    increased_size_megs=$(echo "$minimal_size_b/$meg+64" | bc)
+    resize2fs /dev/loop0p1 "${increased_size_megs}M"
+
+    p=$(parted --machine /dev/loop0 unit s print)
+    block_count=$(tune2fs -l /dev/loop0p1 | awk '/Block count/{print $3}')
+    sector_size=$(echo "$p"| awk -F: '/loop0/{ print $4 }')
+    start_sector=$(echo "$p" | awk -F: '/^1/{gsub(/s/,"",$2);print $2}')
+    fs_size=$(echo "$block_count * $block_size" | bc)
+    fs_sectors=$(echo "$fs_size / $sector_size" | bc)
+    part_sectors=$(echo "(($fs_sectors-1)/$sector_size+1)*$sector_size" | bc)
+    end_sector=$(echo "$start_sector + $part_sectors - 1" | bc)
+    echo "Partition start: $start_sector end: $end_sector size: $part_sectors"
+    parted /dev/loop0 unit s resizepart 1 "$end_sector" Yes
+    byte_size=$(parted --machine /dev/loop0 unit b print | awk -F: '/^1/{sub(/B/,"",$3);print $3}')
+    byte_size_up=$(echo "(($byte_size/$meg)+1) * $meg" | bc)
+    truncate -s "$byte_size_up" /z
+}
+
+cleanup() {
+    losetup -d /dev/loop0
+    rm /dev/loop0 /dev/loop0p1
+    trap - EXIT
+}
+main
