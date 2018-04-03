@@ -11,11 +11,4 @@ Benefits:
 - no need to virtualize to make the image (just docker is enough).
 - simpler setup: replace debian-live setup with debootstrap.
 - continuous integration.
-- much faster.
-
-Resize partition:
-https://unix.stackexchange.com/questions/373063/auto-expand-last-partition-to-use-all-unallocated-space-using-parted-in-batch-m
-
-Try `parted resizepart 1 100% Yes`
-
-https://github.com/EugenMayer/parted-auto-resize/blob/master/resize.sh
+- much faster (clean build + test in 6 minutes on travis-ci).
