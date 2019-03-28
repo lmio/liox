@@ -20,10 +20,11 @@ esac
 lb config noauto \
     --architectures $LX_ARCHS \
     --linux-flavours $LX_FLAVS \
-    --distribution stretch \
+    --distribution buster \
     --archive-areas "main contrib non-free" \
     --debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
     --debian-installer live \
+    --debian-installer-distribution daily \ # Workaround to make d-i kernel and live image modules match.
     --hdd-size 7000 \
     --security true \
     --updates true \

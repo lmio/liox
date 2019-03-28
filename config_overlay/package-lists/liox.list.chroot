@@ -1,10 +1,10 @@
 lxde task-laptop xarchiver feh gpicview scrot evince
-firefox-esr system-config-printer conky
+firefox-esr system-config-printer conky wget
 
 xserver-xorg-video-all
 
-vim-gtk joe gedit scite geany geany-plugins leafpad codeblocks codeblocks-contrib
-eclipse-cdt kdevelop kate sublime-text
+vim-gtk joe gedit scite geany geany-plugins codeblocks codeblocks-contrib
+kdevelop kate sublime-text
 
 zsh mc emacs nano git ipython
 
@@ -17,7 +17,7 @@ iotop tmux htop kpartx tsocks units mlocate
 bridge-utils bash-completion rfkill apt-file ntp locales
 iptables-persistent
 
-stl-manual gdb-doc gcc-doc manpages
+stl-manual gdb-doc manpages
 cppreference-doc-en-html
 
 python3-requests
