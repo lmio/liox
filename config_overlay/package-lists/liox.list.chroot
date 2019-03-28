@@ -1,5 +1,7 @@
-lxde task-laptop xarchiver feh gpicview scrot evince
+kde-plasma-desktop task-laptop
+ark dolphin gwenview okular
 firefox-esr system-config-printer wget
+libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-kde5
 
 xserver-xorg-video-all
 
