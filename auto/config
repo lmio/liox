@@ -25,7 +25,7 @@ lb config noauto \
     --debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
     --debian-installer live \
     --debian-installer-distribution daily \ # Workaround to make d-i kernel and live image modules match.
-    --hdd-size 7000 \
+    --hdd-size 7600 \
     --security true \
     --updates true \
     "${@}"
