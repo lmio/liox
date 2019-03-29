@@ -26,4 +26,7 @@ systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily.timer
 systemctl mask networking.service
 systemctl enable lmio-networking.service
+
+rm /var/lib/apt/lists/*
+
 update-grub
