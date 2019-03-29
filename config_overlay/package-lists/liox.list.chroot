@@ -1,5 +1,9 @@
-kde-plasma-desktop task-laptop
-ark dolphin gwenview okular
+task-laptop
+
+plasma-desktop plasma-workspace udisks2 upower kwin-x11 sddm xserver-xorg
+dolphin kdialog kfind konsole kwrite
+ark gwenview okular
+
 firefox-esr system-config-printer wget
 libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-kde5
 
