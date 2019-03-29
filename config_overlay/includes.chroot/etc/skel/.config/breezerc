@@ -1,0 +1,9 @@
+[Common]
+ShadowSize=ShadowMedium
+
+[Style]
+AnimationsEnabled=false
+
+[Windeco]
+AnimationsEnabled=false
+ButtonSize=ButtonSmall

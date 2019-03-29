@@ -1,0 +1,8 @@
+[OSD]
+Enabled=true
+
+[PlasmaToolTips]
+Delay=0.7
+
+[Wallpapers]
+usersWallpapers=/usr/share/liox-config/lmio-logo-center.png
