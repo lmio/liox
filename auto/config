@@ -17,6 +17,8 @@ case "$LIOX_ARCH" in
         ;;
 esac
 
+# '--debian-installer-distribution daily' is a workaround to make d-i kernel and
+# live image modules match.
 lb config noauto \
     --architectures $LX_ARCHS \
     --linux-flavours $LX_FLAVS \
@@ -24,7 +26,7 @@ lb config noauto \
     --archive-areas "main contrib non-free" \
     --debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
     --debian-installer live \
-    --debian-installer-distribution daily \ # Workaround to make d-i kernel and live image modules match.
+    --debian-installer-distribution daily \
     --hdd-size 7600 \
     --security true \
     --updates true \
