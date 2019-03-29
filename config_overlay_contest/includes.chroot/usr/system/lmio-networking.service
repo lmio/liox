@@ -1,0 +1,11 @@
+[Unit]
+Description=LMIO networking
+Before=network-pre.target
+
+[Install]
+WantedBy=network-pre.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/usr/share/liox-config
+ExecStart=/usr/bin/python static_or_dhcp.py

@@ -24,4 +24,6 @@ chmod 400 /etc/olimp-control/key
 
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily.timer
+systemctl mask networking.service
+systemctl enable lmio-networking.service
 update-grub
