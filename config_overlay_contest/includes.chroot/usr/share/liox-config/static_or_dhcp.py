@@ -50,7 +50,7 @@ addrlist = {
 
 def main():
     with open('/sys/class/net/eth0/address', 'r') as f:
-        mac = lower(f.readline()[:-1])
+        mac = f.readline()[:-1].lower()
     print("My MAC is", mac)
     if mac in addrlist:
         ifaces = ifaces_static[1:].replace('{{ipaddr}}', addrlist[mac])
