@@ -1,0 +1,3 @@
+Package: fonts-noto-extra
+Pin: version *
+Pin-Priority: -1
