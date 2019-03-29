@@ -1,0 +1,3 @@
+Package: fonts-noto-cjk-extra
+Pin: version *
+Pin-Priority: -1
