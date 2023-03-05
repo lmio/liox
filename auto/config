@@ -22,11 +22,10 @@ esac
 lb config noauto \
     --architectures $LX_ARCHS \
     --linux-flavours $LX_FLAVS \
-    --distribution buster \
+    --distribution bullseye \
     --archive-areas "main contrib non-free" \
-    --debootstrap-options "--include=apt-transport-https,ca-certificates,openssl" \
     --debian-installer live \
-    --debian-installer-distribution daily \
+    --debian-installer-distribution bullseye \
     --hdd-size 7600 \
     --security true \
     --updates true \

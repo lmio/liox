@@ -12,7 +12,7 @@ xserver-xorg-video-all
 vim-gtk joe gedit scite geany geany-plugins codeblocks codeblocks-contrib
 kdevelop kate sublime-text
 
-zsh mc emacs nano git ipython
+zsh mc emacs nano git
 
 make gcc g++ gdb ddd valgrind clang
 
