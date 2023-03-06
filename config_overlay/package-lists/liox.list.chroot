@@ -1,22 +1,22 @@
 task-laptop
 
-plasma-desktop plasma-workspace udisks2 upower kwin-x11 sddm xserver-xorg
-dolphin kdialog kfind konsole kwrite
-ark gwenview okular
+plasma-desktop kwin-x11 sddm xserver-xorg
+dolphin konsole kwrite ark gwenview okular
 
-firefox-esr system-config-printer wget
-libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-kde5
+firefox-esr wget
+libreoffice-writer libreoffice-calc libreoffice-impress
+libreoffice-kf5 libreoffice-plasma
 
 xserver-xorg-video-all
 
 vim-gtk joe gedit scite geany geany-plugins codeblocks codeblocks-contrib
-kdevelop kate sublime-text
+kate sublime-text
 
 zsh mc emacs nano git
 
 make gcc g++ gdb ddd valgrind clang
 
-ruby python python3
+python3
 
 strace lsof tree curl dnsutils screen
 iotop tmux htop kpartx tsocks units mlocate
