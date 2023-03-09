@@ -1,0 +1,3 @@
+Package: partitionmanager
+Pin: version *
+Pin-Priority: -1
