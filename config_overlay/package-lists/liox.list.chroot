@@ -22,6 +22,7 @@ strace lsof tree curl dnsutils screen
 iotop tmux htop kpartx tsocks units mlocate
 bridge-utils bash-completion rfkill apt-file ntp locales
 iptables-persistent
+localepurge
 
 stl-manual gdb-doc manpages
 cppreference-doc-en-html
