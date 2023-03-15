@@ -8,4 +8,4 @@ WantedBy=network-pre.target
 [Service]
 Type=oneshot
 WorkingDirectory=/usr/share/liox-config
-ExecStart=/usr/bin/python static_or_dhcp.py
+ExecStart=/usr/bin/python3 static_or_dhcp.py
