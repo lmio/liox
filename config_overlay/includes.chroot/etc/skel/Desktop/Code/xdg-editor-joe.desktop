@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Joe
-Exec=/usr/bin/joe
-Terminal=true
-Categories=X-Debian-Applications-Editors;
