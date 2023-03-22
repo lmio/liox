@@ -24,7 +24,7 @@ bridge-utils bash-completion rfkill apt-file ntp locales
 iptables-persistent
 localepurge
 
-stl-manual gdb-doc manpages
+gdb-doc manpages
 cppreference-doc-en-html
 
 python3-requests
