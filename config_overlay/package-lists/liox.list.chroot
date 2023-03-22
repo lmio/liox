@@ -1,6 +1,6 @@
 task-laptop
 
-plasma-desktop kwin-x11 sddm xserver-xorg
+plasma-desktop kwin-x11 sddm sddm-theme-breeze xserver-xorg
 dolphin konsole kwrite ark gwenview okular
 
 firefox-esr wget
