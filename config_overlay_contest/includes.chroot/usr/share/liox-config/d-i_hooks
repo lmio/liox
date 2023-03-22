@@ -9,7 +9,7 @@ done
 cp -aT /usr/share/liox-config/post-inst-overlay /
 
 cat >> /etc/hosts <<EOF
-63.34.195.141 olimp.cms.lmio.lt
+52.210.44.246 olimp.cms.lmio.lt
 52.58.31.131 ctrl.lmio.lt
 EOF
 
