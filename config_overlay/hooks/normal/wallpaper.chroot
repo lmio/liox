@@ -1,5 +1,0 @@
-#!/bin/sh -ex
-
-update-alternatives \
-    --install /usr/share/images/desktop-base/desktop-background \
-    desktop-background /usr/share/liox-config/lmio-logo-center.png 90
