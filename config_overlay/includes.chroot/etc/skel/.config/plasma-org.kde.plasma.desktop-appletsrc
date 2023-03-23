@@ -21,10 +21,10 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][1][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=/usr/share/liox-config/lmio-logo-center.png
+Image=file:///usr/share/liox-config/lmio-logo-center.png
 SlidePaths=/usr/share/wallpapers
 
 [Containments][2]
@@ -41,14 +41,14 @@ immutability=1
 plugin=org.kde.plasma.digitalclock
 
 [Containments][2][Applets][12][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][2][Applets][13]
 immutability=1
 plugin=org.kde.plasma.showdesktop
 
 [Containments][2][Applets][13][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][2][Applets][3]
 immutability=1
@@ -72,14 +72,14 @@ immutability=1
 plugin=org.kde.plasma.pager
 
 [Containments][2][Applets][4][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][2][Applets][5]
 immutability=1
 plugin=org.kde.plasma.icontasks
 
 [Containments][2][Applets][5][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][2][Applets][5][Configuration][General]
 launchers=preferred://filemanager,preferred://browser
@@ -89,11 +89,11 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][2][Applets][6][Configuration]
-PreloadWeight=47
+PreloadWeight=39
 SystrayContainmentId=7
 
 [Containments][2][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][2][General]
 AppletOrder=3;4;5;6;12;13
@@ -112,43 +112,43 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][7][Applets][10][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][7][Applets][11]
 immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][7][Applets][11][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][7][Applets][14]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][7][Applets][14][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][7][Applets][8]
 immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][7][Applets][8][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][7][Applets][9]
 immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][7][Applets][9][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][7][Configuration]
-PreloadWeight=42
+PreloadWeight=34
 
 [Containments][7][General]
 extraItems=org.kde.plasma.mediacontroller,org.kde.kupapplet,org.kde.plasma.battery,org.kde.plasma.devicenotifier,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.clipboard
 knownItems=org.kde.plasma.mediacontroller,org.kde.kupapplet,org.kde.plasma.battery,org.kde.plasma.devicenotifier,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.clipboard
 
 [ScreenMapping]
-itemsOnDisabledScreens=0,12,desktop:/org.kde.kate.desktop,desktop:/SciTE.desktop,desktop:/gedit.desktop,desktop:/code.desktop,desktop:/firefox-esr.desktop,desktop:/org.kde.konsole.desktop,desktop:/Docs,desktop:/emacs.desktop,desktop:/gvim.desktop,desktop:/geany.desktop,desktop:/sublime_text.desktop,desktop:/codeblocks.desktop
-screenMapping=desktop:/org.kde.kate.desktop,0,desktop:/SciTE.desktop,0,desktop:/gedit.desktop,0,desktop:/code.desktop,0,desktop:/firefox-esr.desktop,0,desktop:/org.kde.konsole.desktop,0,desktop:/Docs,0,desktop:/emacs.desktop,0,desktop:/gvim.desktop,0,desktop:/geany.desktop,0,desktop:/sublime_text.desktop,0,desktop:/codeblocks.desktop,0
+itemsOnDisabledScreens=0,13,desktop:/gedit.desktop,desktop:/SciTE.desktop,desktop:/Docs,desktop:/sublime_text.desktop,desktop:/emacs.desktop,desktop:/geany.desktop,desktop:/org.kde.kate.desktop,desktop:/org.kde.konsole.desktop,desktop:/code.desktop,desktop:/codeblocks.desktop,desktop:/firefox-esr.desktop,desktop:/gvim.desktop,desktop:/org.kde.kcalc.desktop
+screenMapping=desktop:/gedit.desktop,0,desktop:/SciTE.desktop,0,desktop:/Docs,0,desktop:/sublime_text.desktop,0,desktop:/emacs.desktop,0,desktop:/geany.desktop,0,desktop:/org.kde.kate.desktop,0,desktop:/org.kde.konsole.desktop,0,desktop:/code.desktop,0,desktop:/codeblocks.desktop,0,desktop:/firefox-esr.desktop,0,desktop:/gvim.desktop,0,desktop:/org.kde.kcalc.desktop,0
