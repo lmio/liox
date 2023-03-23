@@ -14,7 +14,6 @@ cat >> /etc/hosts <<EOF
 EOF
 
 sed -i '/boot\/efi/d' /etc/fstab
-sed -i '/cdrom0/d' /etc/fstab
 
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d0-shadow) d0
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d1-shadow) d1
