@@ -10,7 +10,7 @@ cp -aT /usr/share/liox-config/post-inst-overlay /
 
 cat >> /etc/hosts <<EOF
 52.210.44.246 olimp.cms.lmio.lt
-52.58.31.131 ctrl.lmio.lt
+3.124.222.157 ctrl.lmio.lt
 EOF
 
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d0-shadow) d0
