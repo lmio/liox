@@ -13,6 +13,9 @@ cat >> /etc/hosts <<EOF
 3.124.222.157 ctrl.lmio.lt
 EOF
 
+sed -i '/boot\/efi/d' /etc/fstab
+sed -i '/cdrom0/d' /etc/fstab
+
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d0-shadow) d0
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d1-shadow) d1
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d2-shadow) d2
