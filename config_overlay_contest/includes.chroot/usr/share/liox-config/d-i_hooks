@@ -35,7 +35,6 @@ systemctl enable lmio-networking.service
 apt-get remove -y firmware-netronome
 
 localepurge
-rm -r /var/lib/apt/lists/*
 
 update-grub
 
