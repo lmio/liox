@@ -24,5 +24,5 @@ else
 	fi
 	su - $1 -c "code --extensions-dir $VSCODE_DIR --install-extension ms-vscode.cpptools-extension-pack"
 	echo "Removing VSIXs"
-	rm -f "/home/$1/.config/Code/CachedExtensionVSIXs/*"
+	rm -f /home/$1/.config/Code/CachedExtensionVSIXs/*
 fi
