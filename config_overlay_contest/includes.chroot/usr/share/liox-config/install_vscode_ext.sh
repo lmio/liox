@@ -23,4 +23,6 @@ else
 		chown $1:$1 "$VSCODE_DIR/extensions.json"
 	fi
 	su - $1 -c "code --extensions-dir $VSCODE_DIR --install-extension ms-vscode.cpptools-extension-pack"
+	echo "Removing VSIXs"
+	rm -rf "/home/$1/.config/Code/CachedExtensionVSIXs/*"
 fi
