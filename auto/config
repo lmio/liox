@@ -22,10 +22,11 @@ esac
 lb config noauto \
     --architectures $LX_ARCHS \
     --linux-flavours $LX_FLAVS \
-    --distribution bullseye \
+    --distribution bookworm \
     --archive-areas "main contrib non-free" \
     --debian-installer live \
-    --debian-installer-distribution bullseye \
+    --debian-installer-distribution bookworm \
+    --debootstrap-options "--include=ca-certificates,openssl" \
     --hdd-size 7600 \
     --security true \
     --updates true \
