@@ -1,6 +1,6 @@
---- /etc/grub.d/10_linux	2018-03-20 01:41:09.080000000 +0200
-+++ /etc/grub.d/10_linux.mod	2018-03-20 01:41:54.840000000 +0200
-@@ -131,7 +131,7 @@
+--- /etc/grub.d/10_linux	2023-10-02 17:11:34.000000000 +0300
++++ /etc/grub.d/10_linux.mod	2024-02-12 03:56:22.536887682 +0200
+@@ -141,7 +141,7 @@
        fi
        echo "menuentry '$(echo "$title" | grub_quote)' ${CLASS} \$menuentry_id_option 'gnulinux-$version-$type-$boot_device_id' {" | sed "s/^/$submenu_indentation/"
    else
