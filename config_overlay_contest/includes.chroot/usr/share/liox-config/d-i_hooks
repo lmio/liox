@@ -35,6 +35,3 @@ systemctl enable systemd-networkd.service
 localepurge
 
 update-grub
-
-THEUUID=$(blkid | grep /dev/sda1 | cut "-d " -f 2)
-sed -i -e "s/\/dev\/sda1/${THEUUID}/g" /boot/grub/grub.cfg
