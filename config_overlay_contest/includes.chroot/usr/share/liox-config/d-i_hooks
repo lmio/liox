@@ -6,7 +6,8 @@ for P in $(ls /usr/share/liox-config/patches/*.patch); do
     patch -d/ -p0 < ${P}
 done
 
-cp -aT /usr/share/liox-config/post-inst-overlay /
+#cp -aT /usr/share/liox-config/post-inst-overlay /
+cp /dev/null /etc/network/interfaces
 
 cat >> /etc/hosts <<EOF
 52.210.44.246 olimp.cms.lmio.lt
@@ -29,10 +30,7 @@ systemctl disable apt-daily.timer
 systemctl disable man-db.timer
 systemctl mask apparmor.service
 
-systemctl mask networking.service
-systemctl enable lmio-networking.service
-
-apt-get remove -y firmware-netronome
+systemctl enable systemd-networkd.service
 
 localepurge
 
