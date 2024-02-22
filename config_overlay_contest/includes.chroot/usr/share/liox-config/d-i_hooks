@@ -31,6 +31,7 @@ systemctl disable man-db.timer
 systemctl mask apparmor.service
 
 systemctl enable systemd-networkd.service
+ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 localepurge
 
