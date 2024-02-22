@@ -23,6 +23,7 @@ iotop tmux htop kpartx tsocks units mlocate
 bridge-utils bash-completion rfkill apt-file ntp locales
 iptables-persistent
 localepurge
+firmware-iwlwifi
 
 gdb-doc manpages
 

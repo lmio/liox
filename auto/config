@@ -23,7 +23,7 @@ lb config noauto \
     --architectures $LX_ARCHS \
     --linux-flavours $LX_FLAVS \
     --distribution bookworm \
-    --archive-areas "main contrib non-free" \
+    --archive-areas "main contrib non-free non-free-firmware" \
     --debian-installer live \
     --debian-installer-distribution bookworm \
     --debootstrap-options "--include=ca-certificates,openssl" \
