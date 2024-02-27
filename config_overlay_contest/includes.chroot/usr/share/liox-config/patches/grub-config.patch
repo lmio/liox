@@ -1,0 +1,9 @@
+--- /etc/default/grub	2024-02-24 16:04:21.536067000 -0500
++++ /etc/default/grub.mod	2024-02-26 08:37:38.517968569 -0500
+@@ -7 +7,2 @@
+-GRUB_TIMEOUT=5
++GRUB_TIMEOUT=0
++GRUB_HIDDEN_TIMEOUT=2
+@@ -9 +10 @@
+-GRUB_CMDLINE_LINUX_DEFAULT="quiet"
++GRUB_CMDLINE_LINUX_DEFAULT="quiet init=/usr/share/liox-config/init_resize.sh"

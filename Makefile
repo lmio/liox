@@ -8,7 +8,7 @@ QEMU ?= qemu-system-x86_64 -enable-kvm -cpu host
 iso: $(BASENAME).iso
 
 $(BASENAME).iso:
-	lb config
+	lb config --archive-areas "main contrib non-free non-free-firmware"
 	mkdir -p config/includes.chroot/etc
 	echo $(BASENAME) > config/includes.chroot/etc/liox_version
 	lb build
