@@ -14,8 +14,6 @@ cat >> /etc/hosts <<EOF
 3.126.240.251 ctrl.lmio.lt
 EOF
 
-sed -i '/boot\/efi/d' /etc/fstab
-
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d0-shadow) d0
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d1-shadow) d1
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d2-shadow) d2
@@ -36,3 +34,9 @@ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 localepurge
 
 update-grub
+
+# This is a hack to make sure 'shim' is not used for booting
+cp /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.efi
+iconv -f UTF-8 -t UTF-16 /usr/share/liox-config/boot-entry.csv > /boot/efi/EFI/debian/BOOTX64.CSV
+
+sed -i '/boot\/efi/d' /etc/fstab
