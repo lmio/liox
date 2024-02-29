@@ -10,8 +10,8 @@ done
 cp /dev/null /etc/network/interfaces
 
 cat >> /etc/hosts <<EOF
-52.210.44.246 olimp.cms.lmio.lt
-3.124.222.157 ctrl.lmio.lt
+54.195.104.175 olimp.cms.lmio.lt
+3.126.240.251 ctrl.lmio.lt
 EOF
 
 sed -i '/boot\/efi/d' /etc/fstab
