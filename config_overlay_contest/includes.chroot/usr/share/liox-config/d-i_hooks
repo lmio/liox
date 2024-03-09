@@ -34,6 +34,12 @@ ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
 /usr/share/liox-config/downgrade_codeblocks.sh
 
+/usr/share/liox-config/install_vscode_ext.sh d0
+sleep 10
+/usr/share/liox-config/install_vscode_ext.sh d1
+sleep 10
+/usr/share/liox-config/install_vscode_ext.sh d2
+
 localepurge
 
 update-grub
