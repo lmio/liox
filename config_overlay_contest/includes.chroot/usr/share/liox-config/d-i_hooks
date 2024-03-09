@@ -32,6 +32,8 @@ systemctl mask apparmor.service
 systemctl enable systemd-networkd.service
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
+/usr/share/liox-config/downgrade_codeblocks.sh
+
 localepurge
 
 update-grub
