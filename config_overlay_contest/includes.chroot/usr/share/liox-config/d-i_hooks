@@ -38,6 +38,6 @@ update-grub
 
 # This is a hack to make sure 'shim' is not used for booting
 cp /boot/efi/EFI/BOOT/grubx64.efi /boot/efi/EFI/BOOT/BOOTX64.efi
-iconv -f UTF-8 -t UTF-16 /usr/share/liox-config/boot-entry.csv > /boot/efi/EFI/debian/BOOTX64.CSV
+iconv -f UTF-8 -t UTF-16LE /usr/share/liox-config/boot-entry.csv > /boot/efi/EFI/debian/BOOTX64.CSV
 
 sed -i '/boot\/efi/d' /etc/fstab
