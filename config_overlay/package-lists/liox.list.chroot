@@ -11,12 +11,14 @@ xserver-xorg-video-all
 
 vim-gtk3 joe gedit scite geany geany-plugins codeblocks codeblocks-contrib
 kate sublime-text
+kdevelop
+neovim
 
 zsh mc emacs nano git
 
-make gcc g++ gdb ddd valgrind
+make gcc g++ gdb ddd valgrind clang
 
-python3
+ruby python3
 
 strace lsof tree curl dnsutils screen
 iotop tmux htop kpartx tsocks units mlocate
