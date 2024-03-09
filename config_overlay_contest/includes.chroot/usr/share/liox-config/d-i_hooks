@@ -6,8 +6,9 @@ for P in $(ls /usr/share/liox-config/patches/*.patch); do
     patch -d/ -p0 < ${P}
 done
 
-#cp -aT /usr/share/liox-config/post-inst-overlay /
-cp /dev/null /etc/network/interfaces
+if [ -d /usr/share/liox-config/post-inst-overlay ]; then
+    cp -aT /usr/share/liox-config/post-inst-overlay /
+fi
 
 cat >> /etc/hosts <<EOF
 54.195.104.175 olimp.cms.lmio.lt
