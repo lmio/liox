@@ -1,0 +1,5 @@
+[Default Applications]
+text/plain=org.kde.kwrite.desktop
+
+[Added Associations]
+text/plain=org.kde.kwrite.desktop
