@@ -9,7 +9,7 @@ libreoffice-kf5 libreoffice-plasma
 
 xserver-xorg-video-all
 
-vim-gtk3 joe gedit scite geany geany-plugins codeblocks codeblocks-contrib
+vim vim-gtk3 joe gedit scite geany geany-plugins codeblocks codeblocks-contrib
 kate sublime-text
 kdevelop
 neovim
