@@ -10,11 +10,6 @@ if [ -d /usr/share/liox-config/post-inst-overlay ]; then
     cp -aT /usr/share/liox-config/post-inst-overlay /
 fi
 
-cat >> /etc/hosts <<EOF
-54.195.104.175 olimp.cms.lmio.lt
-3.127.114.194 ctrl.lmio.lt
-EOF
-
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d0-shadow) d0
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d1-shadow) d1
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d2-shadow) d2
@@ -36,6 +31,12 @@ sleep 10
 /usr/share/liox-config/install_vscode_ext.sh d1
 sleep 10
 /usr/share/liox-config/install_vscode_ext.sh d2
+
+cat >> /etc/hosts <<EOF
+54.195.104.175 olimp.cms.lmio.lt
+3.127.114.194 ctrl.lmio.lt
+127.0.0.1 marketplace.visualstudio.com
+EOF
 
 systemctl enable systemd-networkd.service
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
