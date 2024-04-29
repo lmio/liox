@@ -12,7 +12,7 @@ fi
 
 cat >> /etc/hosts <<EOF
 54.195.104.175 olimp.cms.lmio.lt
-3.126.240.251 ctrl.lmio.lt
+3.127.114.194 ctrl.lmio.lt
 EOF
 
 useradd -m -s /bin/bash -p $(cat /usr/share/liox-config/d0-shadow) d0
