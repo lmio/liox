@@ -33,7 +33,7 @@ sleep 10
 /usr/share/liox-config/install_vscode_ext.sh d2
 
 cat >> /etc/hosts <<EOF
-54.195.104.175 olimp.cms.lmio.lt
+99.80.22.14 olimp.cms.lmio.lt
 3.127.114.194 ctrl.lmio.lt
 127.0.0.1 marketplace.visualstudio.com
 EOF
