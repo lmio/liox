@@ -21,7 +21,7 @@ if ! yes | parted ---pretend-input-tty -m -a opt $ROOT_DEV "resizepart $ROOT_PAR
 	echo "Failed resizing root filesystem"
 	sleep infinity
 else
-	resize2fs ${ROOT_DEV}${ROOT_PART_NUM}
+	resize2fs ${ROOT_PART_DEV}
 	sync
 	mount / -o remount,ro
 	whiptail --infobox "Resized root filesystem, rebooting..." 20 60
