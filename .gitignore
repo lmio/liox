@@ -1,3 +1,4 @@
+# debian live version
 /.build
 /.lock
 /.stage
@@ -26,3 +27,16 @@
 /extra_config
 /liox-*
 /build.log
+
+# debootstrap version
+*.raw
+*.img
+*.qcow2
+*.iso
+cache/
+.cache/
+mnt/
+liox_tmp/
+result
+result-fd
+qemushared/rootfs.tar.zstd
