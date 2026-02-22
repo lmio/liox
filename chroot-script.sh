@@ -128,6 +128,6 @@ UUID=${ROOT_UUID}   /           ext4 defaults,errors=remount-ro     0   1
 EOF
 grub-install --removable --target=x86_64-efi "${BLOCK_DEVICE}"
 update-grub
-rm -rf /includes.chroot /etc/apt/apt.conf.d/99cache /chroot-script.sh
+rm -rf /etc/apt/apt.conf.d/99cache /chroot-script.sh
 
 systemctl enable systemd-networkd

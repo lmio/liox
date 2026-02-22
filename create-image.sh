@@ -61,12 +61,14 @@ debootstrap \
     stable "${BUILD_DIR}" https://deb.debian.org/debian
 
 mkdir -p "${BUILD_DIR}/var/cache/apt/archives"
+mkdir -p "${BUILD_DIR}/includes.chroot"
 mount -t tmpfs chroot_tmp "${BUILD_DIR}/tmp"
 mount --make-rslave --rbind /proc "${BUILD_DIR}/proc"
 mount --make-rslave --rbind /sys  "${BUILD_DIR}/sys"
 mount --make-rslave --rbind /dev  "${BUILD_DIR}/dev"
 # mount --make-rslave --rbind /run  "${BUILD_DIR}/run"
 mount --bind "${APT_CACHE_DIR}" "${BUILD_DIR}/var/cache/apt/archives"
+mount --make-rslave --rbind -o ro ./includes.chroot "${BUILD_DIR}/includes.chroot"
 
 function cleanup_mounts()
 {
@@ -77,6 +79,8 @@ function cleanup_mounts()
     # umount -l "${BUILD_DIR}/run"
     umount "${BUILD_DIR}/var/cache/apt/archives"
     umount "${BUILD_DIR}/boot/efi"
+    umount -l "${BUILD_DIR}/includes.chroot"
+    rmdir "${BUILD_DIR}/includes.chroot"
     umount "${BUILD_DIR}"
     losetup -d "${BLOCK_DEVICE}"
     rmdir "${BUILD_DIR}"
@@ -84,7 +88,6 @@ function cleanup_mounts()
 trap cleanup_mounts EXIT
 
 cp ./chroot-script.sh "${BUILD_DIR}"
-cp -r ./includes.chroot "${BUILD_DIR}"
 cat << EOF > "${BUILD_DIR}/etc/apt/apt.conf.d/99cache"
 Binary::apt::APT::Keep-Downloaded-Packages "true";
 APT::Keep-Downloaded-Packages "true";
