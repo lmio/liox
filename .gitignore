@@ -1,34 +1,3 @@
-# debian live version
-/.build
-/.lock
-/.stage
-/binary
-/binary.contents
-/binary.deb
-/binary-*.iso
-/binary.iso.zsync
-/binary.packages
-/binary.udeb
-/config
-/live-image-*.contents
-/live-image-*.deb
-/live-image-*.files
-/live-image-*.iso
-/live-image-*.iso.zsync
-/live-image-*.packages
-/live-image-*.udeb
-/cache
-/chroot
-/chroot.files
-/chroot.packages.install
-/chroot.packages.live
-/hdd-*.vdi
-/target
-/extra_config
-/liox-*
-/build.log
-
-# debootstrap version
 *.raw
 *.img
 *.qcow2
