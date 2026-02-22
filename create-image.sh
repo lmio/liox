@@ -31,7 +31,7 @@ then
  	fi
 else
     echo "Creating new image"
-    dd if=/dev/zero of="${BUILD_IMAGE}" bs=1M count="${IMAGE_SIZE_MB}" status=progress
+    qemu-img create -f raw "${BUILD_IMAGE}" "${IMAGE_SIZE_MB}M"
 fi
 
 set -x
