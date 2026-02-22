@@ -92,7 +92,7 @@ apt -y install \
     sublime-text code \
     /tmp/olimp-control*.deb
 
-cp -rf /includes.chroot/* /
+cp -rf /chroot-overlay/* /
 
 for P in $(ls /usr/share/liox-config/patches/*.patch); do
     patch -d/ -p0 < ${P}
