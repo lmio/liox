@@ -77,7 +77,7 @@ apt -y install \
     git make gcc g++ gdb gdb-doc ddd valgrind clang \
     python3 ruby \
     python3-requests \
-    /tmp/olimp-control*.deb
+    /packages/*.deb
 
 cp -rf /chroot-overlay/* /
 

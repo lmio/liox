@@ -64,6 +64,7 @@ mkdir -p "${BUILD_DIR}/var/cache/apt/archives"
 mkdir -p "${BUILD_DIR}/chroot-overlay"
 mkdir -p "${BUILD_DIR}/apt-keys"
 mkdir -p "${BUILD_DIR}/apt-sources"
+mkdir -p "${BUILD_DIR}/packages"
 mount -t tmpfs chroot_tmp "${BUILD_DIR}/tmp"
 mount --make-rslave --rbind /proc "${BUILD_DIR}/proc"
 mount --make-rslave --rbind /sys  "${BUILD_DIR}/sys"
@@ -73,6 +74,7 @@ mount --bind "${APT_CACHE_DIR}" "${BUILD_DIR}/var/cache/apt/archives"
 mount --make-rslave --rbind -o ro ./chroot-overlay "${BUILD_DIR}/chroot-overlay"
 mount --make-rslave --rbind -o ro ./apt-keys "${BUILD_DIR}/apt-keys"
 mount --make-rslave --rbind -o ro ./apt-sources "${BUILD_DIR}/apt-sources"
+mount --make-rslave --rbind -o ro ./packages "${BUILD_DIR}/packages"
 
 function cleanup_mounts()
 {
@@ -86,9 +88,11 @@ function cleanup_mounts()
     umount -l "${BUILD_DIR}/chroot-overlay"
     umount -l "${BUILD_DIR}/apt-keys"
     umount -l "${BUILD_DIR}/apt-sources"
+    umount -l "${BUILD_DIR}/packages"
     rmdir "${BUILD_DIR}/chroot-overlay"
     rmdir "${BUILD_DIR}/apt-keys"
     rmdir "${BUILD_DIR}/apt-sources"
+    rmdir "${BUILD_DIR}/packages"
     umount "${BUILD_DIR}"
     losetup -d "${BLOCK_DEVICE}"
     rmdir "${BUILD_DIR}"
@@ -102,7 +106,6 @@ APT::Keep-Downloaded-Packages "true";
 EOF
 mkdir -p "${BUILD_DIR}/etc/apt/preferences.d"
 cp ./apt-preferences/* "${BUILD_DIR}/etc/apt/preferences.d"
-cp ./olimp-control*.deb "${BUILD_DIR}/tmp"
 chroot "${BUILD_DIR}" /bin/bash -c \
 	"/bin/env -i \
     BLOCK_DEVICE=${BLOCK_DEVICE} \
