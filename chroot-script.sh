@@ -64,8 +64,6 @@ apt -y update
 echo "iptables-persistent iptables-persistent/autosave_v4 boolean true" | debconf-set-selections
 echo "iptables-persistent iptables-persistent/autosave_v6 boolean true" | debconf-set-selections
 echo "keyboard-configuration keyboard-configuration/variant select English (US)" | debconf-set-selections
-echo "localepurge localepurge/nopurge multiselect en, en_US, en_US.UTF-8, lt, lt_LT, lt_LT.UTF-8, pl, pl_PL, pl_PL.UTF-8, ru, ru_RU, ru_RU.UTF-8" | debconf-set-selections
-echo "localepurge localepurge/use-dpkg-feature boolean false" | debconf-set-selections
 
 apt -y install \
     task-laptop \
@@ -80,9 +78,8 @@ apt -y install \
     python3 \
     strace lsof tree curl dnsutils screen \
     iotop tmux htop kpartx tsocks units locate \
-    bridge-utils bash-completion rfkill apt-file ntpsec locales \
+    bridge-utils bash-completion rfkill apt-file ntpsec \
     iptables-persistent \
-    localepurge \
     gdb-doc manpages \
     python3-requests \
     kcalc apt-transport-https \
