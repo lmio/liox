@@ -66,27 +66,17 @@ echo "iptables-persistent iptables-persistent/autosave_v6 boolean true" | debcon
 echo "keyboard-configuration keyboard-configuration/variant select English (US)" | debconf-set-selections
 
 apt -y install \
-    task-laptop \
-    plasma-desktop kwin-x11 sddm sddm-theme-breeze xserver-xorg \
-    dolphin konsole kwrite ark gwenview okular \
-    firefox-esr wget \
-    xserver-xorg-video-all \
-    vim-gtk3 joe gedit scite geany geany-plugins codeblocks codeblocks-contrib \
-    kate \
-    zsh mc emacs nano git \
-    make gcc g++ gdb ddd valgrind \
-    python3 \
-    strace lsof tree curl dnsutils screen \
-    iotop tmux htop kpartx tsocks units locate \
-    bridge-utils bash-completion rfkill apt-file ntpsec \
-    iptables-persistent \
-    gdb-doc manpages \
-    python3-requests \
-    kcalc apt-transport-https \
-    clang firmware-iwlwifi kdevelop \
+    task-laptop firmware-iwlwifi apt-file apt-transport-https manpages \
+    plasma-desktop kwin-x11 sddm sddm-theme-breeze xserver-xorg xserver-xorg-video-all \
+    dolphin konsole kwrite ark gwenview okular kcalc \
     libreoffice-calc libreoffice-impress libreoffice-kf6 libreoffice-plasma libreoffice-writer \
-    neovim ruby vim whois \
-    sublime-text code \
+    firefox-esr wget curl dnsutils tsocks bridge-utils ntpsec iptables-persistent whois rfkill \
+    joe gedit scite geany geany-plugins codeblocks codeblocks-contrib \
+    kate emacs nano kdevelop neovim vim vim-gtk3 sublime-text code \
+    zsh mc strace lsof tree screen iotop tmux htop kpartx units locate bash-completion \
+    git make gcc g++ gdb gdb-doc ddd valgrind clang \
+    python3 ruby \
+    python3-requests \
     /tmp/olimp-control*.deb
 
 cp -rf /chroot-overlay/* /
