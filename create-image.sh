@@ -62,6 +62,8 @@ debootstrap \
 
 mkdir -p "${BUILD_DIR}/var/cache/apt/archives"
 mkdir -p "${BUILD_DIR}/includes.chroot"
+mkdir -p "${BUILD_DIR}/apt-keys"
+mkdir -p "${BUILD_DIR}/apt-sources"
 mount -t tmpfs chroot_tmp "${BUILD_DIR}/tmp"
 mount --make-rslave --rbind /proc "${BUILD_DIR}/proc"
 mount --make-rslave --rbind /sys  "${BUILD_DIR}/sys"
@@ -69,6 +71,8 @@ mount --make-rslave --rbind /dev  "${BUILD_DIR}/dev"
 # mount --make-rslave --rbind /run  "${BUILD_DIR}/run"
 mount --bind "${APT_CACHE_DIR}" "${BUILD_DIR}/var/cache/apt/archives"
 mount --make-rslave --rbind -o ro ./includes.chroot "${BUILD_DIR}/includes.chroot"
+mount --make-rslave --rbind -o ro ./apt-keys "${BUILD_DIR}/apt-keys"
+mount --make-rslave --rbind -o ro ./apt-sources "${BUILD_DIR}/apt-sources"
 
 function cleanup_mounts()
 {
@@ -80,7 +84,11 @@ function cleanup_mounts()
     umount "${BUILD_DIR}/var/cache/apt/archives"
     umount "${BUILD_DIR}/boot/efi"
     umount -l "${BUILD_DIR}/includes.chroot"
+    umount -l "${BUILD_DIR}/apt-keys"
+    umount -l "${BUILD_DIR}/apt-sources"
     rmdir "${BUILD_DIR}/includes.chroot"
+    rmdir "${BUILD_DIR}/apt-keys"
+    rmdir "${BUILD_DIR}/apt-sources"
     umount "${BUILD_DIR}"
     losetup -d "${BLOCK_DEVICE}"
     rmdir "${BUILD_DIR}"

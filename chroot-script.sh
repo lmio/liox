@@ -52,13 +52,13 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 EOF
 
-apt -y install linux-image-amd64 firmware-linux grub-efi debconf-utils wget gpg
+apt -y install linux-image-amd64 firmware-linux grub-efi debconf-utils gpg
 
+mkdir -p /etc/apt/sources.list.d/
+cp ./apt-sources/* /etc/apt/sources.list.d/
 mkdir -p /etc/apt/trusted.gpg.d/
-echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | tee /etc/apt/sources.list.d/vscode.list
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/sublimehq-archive.gpg
-wget -qO - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/ms-vscode-keyring.gpg
+gpg --dearmor -o /etc/apt/trusted.gpg.d/sublimehq-pub.gpg < /apt-keys/sublimehq-pub.asc
+gpg --dearmor -o /etc/apt/trusted.gpg.d/microsoft.gpg < /apt-keys/microsoft.asc
 apt -y update
 
 echo "iptables-persistent iptables-persistent/autosave_v4 boolean true" | debconf-set-selections
