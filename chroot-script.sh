@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 set -xeuo pipefail
 
-CTRL_KEY="abcde"
-LIOADMIN_PWD="lioadmin"
-GRUB_PWD="grub"
-HOSTNAME="lioxbox"
+if [ -f /tmp/contest.env ]; then
+    source /tmp/contest.env
+fi
+
+CTRL_KEY="${CTRL_KEY:-nonsecret}"
+LIOADMIN_PWD="${LIOADMIN_PWD:-lioadmin}"
+GRUB_PWD="${GRUB_PWD:-grub}"
+HOSTNAME="${HOSTNAME:-lioxbox}"
+
 TIMEZONE="Europe/Vilnius"
 
 export LANG=C.UTF-8
@@ -91,20 +96,27 @@ echo -n "${CTRL_KEY}" > /etc/olimp-control/key
 chown root:root /etc/olimp-control/key
 chmod 400 /etc/olimp-control/key
 
-# useradd -m -s /bin/bash -p ${D0_PWD_HASH} d0
-# useradd -m -s /bin/bash -p ${D1_PWD_HASH} d1
-# useradd -m -s /bin/bash -p ${D2_PWD_HASH} d2
-LIOADMIN_PWD_HASH=$(echo "${LIOADMIN_PWD}" | mkpasswd -s -m sha-512)
-useradd -m -s /bin/bash -p "${LIOADMIN_PWD_HASH}" lioadmin
+function make_user()
+{
+    local USERNAME="$1"
+    local PASSWORD_HASH=$(echo "$2" | mkpasswd -s -m sha-512)
+    useradd -m -s /bin/bash -p "${PASSWORD_HASH}" "${USERNAME}"
+    /usr/share/liox-config/install_vscode_ext.sh "${USERNAME}"
+    sleep 10
+}
+
+make_user lioadmin "${LIOADMIN_PWD}"
 usermod -a -G sudo lioadmin
 
-/usr/share/liox-config/install_vscode_ext.sh lioadmin
-#sleep 10
-#/usr/share/liox-config/install_vscode_ext.sh d0
-#sleep 10
-#/usr/share/liox-config/install_vscode_ext.sh d1
-#sleep 10
-#/usr/share/liox-config/install_vscode_ext.sh d2
+if [ -n "${D0_PWD}" ]; then
+    make_user d0 "${D0_PWD}"
+fi
+if [ -n "${D1_PWD}" ]; then
+    make_user d1 "${D1_PWD}"
+fi
+if [ -n "${D2_PWD}" ]; then
+    make_user d2 "${D2_PWD}"
+fi
 
 GRUB_PWD_HASH=$(printf "%s\n%s" "${GRUB_PWD}" "${GRUB_PWD}" | grub-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}')
 mkdir -p /boot/grub

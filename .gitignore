@@ -9,3 +9,4 @@ liox_tmp/
 result
 result-fd
 qemushared/rootfs.tar.zstd
+contest.env

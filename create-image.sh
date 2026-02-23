@@ -100,6 +100,9 @@ function cleanup_mounts()
 trap cleanup_mounts EXIT
 
 cp ./chroot-script.sh "${BUILD_DIR}"
+if [ -f ./contest.env ]; then
+    cp ./contest.env "${BUILD_DIR}/tmp/"
+fi
 cat << EOF > "${BUILD_DIR}/etc/apt/apt.conf.d/99cache"
 Binary::apt::APT::Keep-Downloaded-Packages "true";
 APT::Keep-Downloaded-Packages "true";
