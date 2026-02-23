@@ -66,7 +66,7 @@ echo "iptables-persistent iptables-persistent/autosave_v6 boolean true" | debcon
 echo "keyboard-configuration keyboard-configuration/variant select English (US)" | debconf-set-selections
 
 apt -y install \
-    task-laptop firmware-iwlwifi apt-file apt-transport-https manpages \
+    task-laptop firmware-iwlwifi apt-file apt-transport-https manpages systemd-resolved \
     plasma-desktop kwin-x11 sddm sddm-theme-breeze xserver-xorg xserver-xorg-video-all \
     dolphin konsole kwrite ark gwenview okular kcalc \
     libreoffice-calc libreoffice-impress libreoffice-kf6 libreoffice-plasma libreoffice-writer \
@@ -119,3 +119,4 @@ update-grub
 rm -rf /etc/apt/apt.conf.d/99cache /chroot-script.sh
 
 systemctl enable systemd-networkd
+systemctl enable systemd-resolved
