@@ -3,8 +3,8 @@ set -euo pipefail
 
 if [ $(id -u) -ne 0 ]
 then
-	echo "Script must be run as root"
-	exit 1
+    echo "Script must be run as root"
+    exit 1
 fi
 
 IMAGE_SIZE_MB=16384
@@ -17,18 +17,18 @@ BUILD_IMAGE="./liox.img"
 
 if [ -d "${BUILD_DIR}" ]
 then
-	echo "Directory \`${BUILD_DIR}\` exists"
-	exit 1
+    echo "Directory \`${BUILD_DIR}\` exists"
+    exit 1
 fi
 
 if [ -f "${BUILD_IMAGE}" ]
 then
- 	read -p "Image \`${BUILD_IMAGE}\` already exists. Rebuild? [y/N] " prompt
- 	if [[ "${prompt}" != "y" && "${prompt}" != "Y" ]]
- 	then
- 		echo "Aborting"
- 		exit 1
- 	fi
+    read -p "Image \`${BUILD_IMAGE}\` already exists. Rebuild? [y/N] " prompt
+    if [[ "${prompt}" != "y" && "${prompt}" != "Y" ]]
+    then
+        echo "Aborting"
+        exit 1
+    fi
 else
     echo "Creating new image"
     qemu-img create -f raw "${BUILD_IMAGE}" "${IMAGE_SIZE_MB}M"
@@ -107,7 +107,7 @@ EOF
 mkdir -p "${BUILD_DIR}/etc/apt/preferences.d"
 cp ./apt-preferences/* "${BUILD_DIR}/etc/apt/preferences.d"
 chroot "${BUILD_DIR}" /bin/bash -c \
-	"/bin/env -i \
+    "/bin/env -i \
     BLOCK_DEVICE=${BLOCK_DEVICE} \
     EFIPART=${EFIPART} \
     SWAPPART=${SWAPPART} \
