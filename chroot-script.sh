@@ -98,6 +98,14 @@ LIOADMIN_PWD_HASH=$(echo "${LIOADMIN_PWD}" | mkpasswd -s -m sha-512)
 useradd -m -s /bin/bash -p "${LIOADMIN_PWD_HASH}" lioadmin
 usermod -a -G sudo lioadmin
 
+/usr/share/liox-config/install_vscode_ext.sh lioadmin
+#sleep 10
+#/usr/share/liox-config/install_vscode_ext.sh d0
+#sleep 10
+#/usr/share/liox-config/install_vscode_ext.sh d1
+#sleep 10
+#/usr/share/liox-config/install_vscode_ext.sh d2
+
 GRUB_PWD_HASH=$(printf "%s\n%s" "${GRUB_PWD}" "${GRUB_PWD}" | grub-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}')
 mkdir -p /boot/grub
 cat > /boot/grub/custom.cfg <<EOF
