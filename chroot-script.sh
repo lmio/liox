@@ -108,13 +108,13 @@ function make_user()
 make_user lioadmin "${LIOADMIN_PWD}"
 usermod -a -G sudo lioadmin
 
-if [ -n "${D0_PWD}" ]; then
+if [[ -v D0_PWD ]]; then
     make_user d0 "${D0_PWD}"
 fi
-if [ -n "${D1_PWD}" ]; then
+if [[ -v D1_PWD ]]; then
     make_user d1 "${D1_PWD}"
 fi
-if [ -n "${D2_PWD}" ]; then
+if [[ -v D2_PWD ]]; then
     make_user d2 "${D2_PWD}"
 fi
 
