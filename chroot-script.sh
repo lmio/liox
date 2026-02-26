@@ -96,13 +96,13 @@ echo -n "${CTRL_KEY}" > /etc/olimp-control/key
 chown root:root /etc/olimp-control/key
 chmod 400 /etc/olimp-control/key
 
+USER_LIST=()
 function make_user()
 {
     local USERNAME="$1"
     local PASSWORD_HASH=$(echo "$2" | mkpasswd -s -m sha-512)
+    USER_LIST+=("${USERNAME}")
     useradd -m -s /bin/bash -p "${PASSWORD_HASH}" "${USERNAME}"
-    /usr/share/liox-config/install_vscode_ext.sh "${USERNAME}"
-    sleep 10
 }
 
 make_user lioadmin "${LIOADMIN_PWD}"
@@ -117,6 +117,7 @@ fi
 if [[ -v D2_PWD ]]; then
     make_user d2 "${D2_PWD}"
 fi
+/usr/share/liox-config/install_vscode_ext.sh "${USER_LIST[@]}"
 
 GRUB_PWD_HASH=$(printf "%s\n%s" "${GRUB_PWD}" "${GRUB_PWD}" | grub-mkpasswd-pbkdf2 | awk '/grub.pbkdf/{print$NF}')
 mkdir -p /boot/grub
