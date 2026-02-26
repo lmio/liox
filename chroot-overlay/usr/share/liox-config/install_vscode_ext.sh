@@ -34,13 +34,19 @@ trap cleanup_tmpdir EXIT
 echo "Installing from internet for ${FIRST_USER}"
 sudo -u "${FIRST_USER}" code --install-extension ${EXTENSION_NAME}
 install_args=()
+final_install_args=()
 for f in "/home/${FIRST_USER}/.config/Code/CachedExtensionVSIXs/"*; do
     vsix_file="${VSIX_TMP_DIR}/$(basename "${f}").vsix"
     mv "${f}" "${vsix_file}"
-    install_args+=(--install-extension "${vsix_file}")
+    if [[ "$(basename "${f}")" == "${EXTENSION_NAME}"* ]]; then
+        final_install_args+=(--install-extension "${vsix_file}")
+    else
+        install_args+=(--install-extension "${vsix_file}")
+    fi
 done
 chmod 777 "${VSIX_TMP_DIR}"
 for user in "${OTHER_USERS[@]}"; do
     echo "Installing from VSIXs for ${user}"
     sudo -u "${user}" code ${install_args[@]}
+    sudo -u "${user}" code ${final_install_args[@]}
 done
