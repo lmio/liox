@@ -1,0 +1,15 @@
+Package: shim-signed
+Pin: version *
+Pin-Priority: -1
+
+Package: shim-signed-common
+Pin: version *
+Pin-Priority: -1
+
+Package: shim-helpers-amd64-signed
+Pin: version *
+Pin-Priority: -1
+
+Package: shim-unsigned
+Pin: version *
+Pin-Priority: -1

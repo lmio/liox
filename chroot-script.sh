@@ -135,7 +135,7 @@ UUID=${SWAP_UUID}   swap        swap defaults                       0   0
 UUID=${ROOT_UUID}   /           ext4 defaults,errors=remount-ro     0   1
 EOF
 update-initramfs -u -k all
-grub-install --removable --target=x86_64-efi "${BLOCK_DEVICE}"
+grub-install --removable --no-nvram --target=x86_64-efi "${BLOCK_DEVICE}"
 update-grub
 rm -rf /etc/apt/apt.conf.d/99cache /chroot-script.sh
 
