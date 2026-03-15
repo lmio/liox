@@ -144,3 +144,9 @@ systemctl enable systemd-resolved
 
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily.timer
+
+cat >> /etc/hosts <<EOF
+54.78.112.2 olimp.cms.lmio.lt
+3.67.144.215 ctrl.lmio.lt
+127.0.0.1 marketplace.visualstudio.com
+EOF
