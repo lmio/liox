@@ -141,3 +141,6 @@ rm -rf /etc/apt/apt.conf.d/99cache /chroot-script.sh
 
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
+
+systemctl disable apt-daily-upgrade.timer
+systemctl disable apt-daily.timer
