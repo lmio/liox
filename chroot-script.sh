@@ -79,7 +79,7 @@ apt -y install \
     joe gedit scite geany geany-plugins codeblocks codeblocks-contrib \
     kate emacs nano kdevelop neovim vim vim-gtk3 sublime-text code \
     zsh mc strace lsof tree screen iotop tmux htop kpartx units locate bash-completion \
-    git make gcc g++ gdb gdb-doc ddd valgrind clang \
+    git make gcc g++ gdb gdb-doc ddd valgrind clang linux-perf \
     python3 ruby \
     python3-requests \
     /packages/*.deb
